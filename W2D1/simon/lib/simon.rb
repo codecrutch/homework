@@ -29,7 +29,7 @@ class Simon
 
     unless game_over
       round_success_message
-      self.sequence_length += 1
+      @sequence_length += 1
       sleep(1)
     end
   end
@@ -48,7 +48,7 @@ class Simon
     puts "Enter the last sequence!"
     input = gets.chomp
     if input != seq.join(" ")
-      self.game_over = true
+      @game_over = true
     end
   end
 
@@ -65,9 +65,9 @@ class Simon
   end
 
   def reset_game
-    self.sequence_length = 1
-    self.seq = []
-    self.game_over = false
+    @sequence_length = 1
+    @seq = []
+    @game_over = false
   end
 end
 
