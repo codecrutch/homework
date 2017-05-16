@@ -42,7 +42,6 @@ CREATE TABLE replies(
 
 CREATE TABLE question_likes(
   id INTEGER PRIMARY KEY,
-  thumbs_up BOOLEAN DEFAULT FALSE NOT NULL,
   question_id INTEGER NOT NULL,
   user_id INTEGER NOT NULL,
 
@@ -70,7 +69,8 @@ INSERT INTO
   question_follows(question_id, follower_id)
 VALUES
   ((SELECT id FROM questions WHERE title LIKE 'Thicker%'),(SELECT id FROM users WHERE lname = 'Trump')),
-  ((SELECT id FROM questions WHERE title LIKE 'How%'),(SELECT id FROM users WHERE lname = 'Musgrave'));
+  ((SELECT id FROM questions WHERE title LIKE 'How%'),(SELECT id FROM users WHERE lname = 'Musgrave')),
+  ((SELECT id FROM questions WHERE title LIKE 'How%'),(SELECT id FROM users WHERE lname = 'Snyder'));
 
 INSERT INTO
   replies(body, parent_id, question_id, user_id)
@@ -78,10 +78,10 @@ VALUES
   ('Tooooooooootally, it''ll make your chest sweater look bigly.', NULL, (SELECT id FROM questions WHERE title LIKE 'Thicker%'), (SELECT id FROM users WHERE lname = 'Trump'));
 
 INSERT INTO
-  question_likes(thumbs_up, question_id, user_id)
+  question_likes(question_id, user_id)
 VALUES
-  (1, (SELECT id FROM questions WHERE title LIKE 'Thicker%'), (SELECT id FROM users WHERE lname = 'Trump')),
-  (1, (SELECT id FROM questions WHERE title LIKE 'How%'), (SELECT id FROM users WHERE lname = 'Putin'));
+  ((SELECT id FROM questions WHERE title LIKE 'Thicker%'), (SELECT id FROM users WHERE lname = 'Trump')),
+  ((SELECT id FROM questions WHERE title LIKE 'How%'), (SELECT id FROM users WHERE lname = 'Putin'));
 
   INSERT INTO
     replies(body, parent_id, question_id, user_id)
