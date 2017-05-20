@@ -1,7 +1,6 @@
 window.onload = function() {
   (function reviewFormListener() {
     form = document.getElementById("review-form");
-    console.log(form);
     form.addEventListener("submit", placeReview);
   })();
 };
@@ -41,7 +40,6 @@ var createReview = function(event) {
 };
 
 var getName = function(event) {
-  console.log(event);
   return event.target.children.name.value;
 };
 
