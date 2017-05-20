@@ -58,6 +58,33 @@
       </ol>
     </section>
 
+    <section>
+      <form action="/reviews" method="post" accept-charset="utf-8">
+        <label for="reviewer">Reviewer</label>
+        <input type="text/submit/hidden/button" name="reviewer" value="" id="reviewer">
+
+        <label for="rating" id="rating">Rating</label>
+        1<input type="radio" value="1" name="rating" checked='true'/>
+        2<input type="radio" value="2" name="rating"/>
+        3<input type="radio" value="3" name="rating"/>
+        4<input type="radio" value="4" name="rating"/>
+
+        <label for="expertise">Cooking Expertise</label>
+        <select name="expertise" id="expertise">
+          <option value="Select Cooking Expertise" disabled="true"
+            selected="true">Select Cooking Expertise</option>
+          <option value="Sometimes Cook">Sometimes Cook</option>
+          <option value="Cook Everyday">Cook Everyday</option>
+          <option value="Hobby Cook">Hobby Cook</option>
+          <option value="Professional Chef">Professional Chef</option>
+        </select>
+        <label for="review">Review</label>
+        <textarea name="review" rows="30" cols="10"></textarea>
+
+        <input type="submit" value="Submit Review"/>
+      </form>
+    </section>
+
     <footer>
       <p>This recipe is made up by Sean Snyder.</p>
     </footer>
