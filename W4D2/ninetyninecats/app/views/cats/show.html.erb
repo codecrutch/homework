@@ -1,0 +1,57 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <td><%= @cat.name %></td>
+  </tr>
+
+  <tr>
+    <th>Color</th>
+    <td><%= @cat.color %></td>
+  </tr>
+
+  <tr>
+    <th>Sex</th>
+    <td><%= @cat.sex %></td>
+
+  </tr>
+
+  <tr>
+    <th>Age</th>
+    <td><%= @cat.age %></td>
+  </tr>
+
+  <tr>
+    <th>Description</th>
+    <td><%= @cat.description %></td>
+  </tr>
+
+  <tr>
+    <th>Rentals</th>
+  </tr>
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </tr>
+
+  <% @cat_requests.each do |request| %>
+  <tr>
+  <td><%= request.start_date %></td>
+  <td><%= request.end_date %></td>
+
+  <% if request.pending? %>
+  <td>
+    <form action="<%= approve_cat_rental_request_url(request) %>">
+      <input type="submit" value="Approve">
+    </form>
+    </td>
+    <td>
+    <form action="<%= deny_cat_rental_request_url(request) %>">
+      <input type="submit" value="Deny">
+    </form>
+  <% end %>
+  </td>
+  </tr>
+  <% end %>
+</tr>
+
+</table>
