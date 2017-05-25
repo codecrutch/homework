@@ -4,11 +4,7 @@
       <%= render "shared/errors" %>
 
     <form action="<%= session_url %>" method="post">
-      <input
-        type="hidden"
-        name="authenticity_token"
-        value="<%= form_authenticity_token %>">
-
+      <%= auth_token %>
       <label for="user_username">User Name</label>
       <input type="text" name="user[username]" id="user_username">
       <br>
@@ -20,3 +16,7 @@
       <input type="submit">
     </form>
 </div></section>
+
+<% content_for :footer do %>
+  <p>This is footer content on sign in page.</p>
+<% end %>
