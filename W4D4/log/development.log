@@ -1,0 +1,2556 @@
+  [1m[36mSQL (2.0ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (19.0ms)[0m  CREATE TABLE "cat_rental_requests" ("id" serial primary key, "cat_id" integer NOT NULL, "end_date" date NOT NULL, "start_date" date NOT NULL, "status" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp, "user_id" integer NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_cat_rental_requests_on_cat_id" ON "cat_rental_requests" USING btree ("cat_id")[0m
+  [1m[35m (1.2ms)[0m  CREATE  INDEX  "index_cat_rental_requests_on_user_id" ON "cat_rental_requests" USING btree ("user_id")
+  [1m[36m (6.1ms)[0m  [1mCREATE TABLE "cats" ("id" serial primary key, "birth_date" date NOT NULL, "color" character varying NOT NULL, "name" character varying NOT NULL, "sex" character varying(1) NOT NULL, "description" text, "created_at" timestamp, "updated_at" timestamp, "user_id" integer NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_cats_on_user_id" ON "cats" USING btree ("user_id")
+  [1m[36m (7.7ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "password_digest" character varying NOT NULL, "session_token" character varying NOT NULL, "username" character varying NOT NULL, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (4.0ms)[0m  CREATE UNIQUE INDEX  "index_users_on_session_token" ON "users" USING btree ("session_token")
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_username" ON "users" USING btree ("username")[0m
+  [1m[35m (3.4ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (1.8ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140630020430')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130809160915')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130809232439')[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130810044018')
+  [1m[36m (1.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130810051907')[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'spGkBzySiWRngio4XWiZGA' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Carlee Rowe' LIMIT 1[0m
+  [1m[35mSQL (2.1ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Carlee Rowe"], ["password_digest", "$2a$10$PP9sK/mC5LcitmQyOzTcYupWawpvl/dZps2LiU19ozQkyCYWLebaa"], ["session_token", "spGkBzySiWRngio4XWiZGA"], ["created_at", "2017-05-25 01:33:19.290696"], ["updated_at", "2017-05-25 01:33:19.290696"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 1], ["name", "distillery"], ["color", "brown"], ["sex", "F"], ["description", "Banjo beard mustache keffiyeh bespoke."], ["birth_date", "2011-03-21"], ["created_at", "2017-05-25 01:33:19.309450"], ["updated_at", "2017-05-25 01:33:19.309450"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = '-z6kfbRIYe9-63B7fpNdVw' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Tyrese Glover' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Tyrese Glover"], ["password_digest", "$2a$10$DPqBPcxZj/Vh9kbJDumyu.T6Co/N6Fu.8eJeR3yzeA.VhU0Hp4uHO"], ["session_token", "-z6kfbRIYe9-63B7fpNdVw"], ["created_at", "2017-05-25 01:33:19.382228"], ["updated_at", "2017-05-25 01:33:19.382228"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 2], ["name", "plaid"], ["color", "brown"], ["sex", "M"], ["description", "Master ennui swag humblebrag art party quinoa franzen carry retro."], ["birth_date", "2008-11-03"], ["created_at", "2017-05-25 01:33:19.385307"], ["updated_at", "2017-05-25 01:33:19.385307"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'DcvdxmRxsMD4V8V6DbGZyQ' LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Alize Trantow V' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Alize Trantow V"], ["password_digest", "$2a$10$JkwFVToBxOoNs71mFzA29.G4ZbBs7CKzDjERCAODtmyQ2I6F5Evnu"], ["session_token", "DcvdxmRxsMD4V8V6DbGZyQ"], ["created_at", "2017-05-25 01:33:19.458917"], ["updated_at", "2017-05-25 01:33:19.458917"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 3], ["name", "polaroid"], ["color", "white"], ["sex", "F"], ["description", "Scenester biodiesel ramps synth food truck venmo typewriter next level tacos."], ["birth_date", "2010-03-11"], ["created_at", "2017-05-25 01:33:19.461636"], ["updated_at", "2017-05-25 01:33:19.461636"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = '19CwYIqv_67HH776mME2Ww' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Gregory Reichel' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Gregory Reichel"], ["password_digest", "$2a$10$p2URZHhGFs6mt0ENIHRgdOoQV0jzuGH897z12x.rV/ULOkEJHsKla"], ["session_token", "19CwYIqv_67HH776mME2Ww"], ["created_at", "2017-05-25 01:33:19.531978"], ["updated_at", "2017-05-25 01:33:19.531978"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 4], ["name", "fingerstache"], ["color", "orange"], ["sex", "F"], ["description", "Kogi +1 portland thundercats tilde aesthetic."], ["birth_date", "2008-02-17"], ["created_at", "2017-05-25 01:33:19.534517"], ["updated_at", "2017-05-25 01:33:19.534517"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'mRQtEMD2kLucguv3SazDsQ' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Emerson Swift' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Emerson Swift"], ["password_digest", "$2a$10$evZGmtCtnZ9hiW.fJ37qU.L/lOVApbIReyWkuMbHc1SOfVaHKvFfG"], ["session_token", "mRQtEMD2kLucguv3SazDsQ"], ["created_at", "2017-05-25 01:33:19.609952"], ["updated_at", "2017-05-25 01:33:19.609952"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 5], ["name", "bitters"], ["color", "black"], ["sex", "F"], ["description", "Hella fanny pack semiotics whatever tofu mumblecore."], ["birth_date", "2016-11-10"], ["created_at", "2017-05-25 01:33:19.612681"], ["updated_at", "2017-05-25 01:33:19.612681"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'e5PuiF_m_nwLrfbOaxJwIg' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Ulises Bayer' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Ulises Bayer"], ["password_digest", "$2a$10$1c.J2nPSCQ2zXlqqsmu5geaKqssPtjzw38znCBdg4QeYGYgY9Hj36"], ["session_token", "e5PuiF_m_nwLrfbOaxJwIg"], ["created_at", "2017-05-25 01:33:19.688317"], ["updated_at", "2017-05-25 01:33:19.688317"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 6], ["name", "schlitz"], ["color", "white"], ["sex", "F"], ["description", "Post-ironic meditation waistcoat williamsburg literally keffiyeh food truck bitters."], ["birth_date", "2011-01-26"], ["created_at", "2017-05-25 01:33:19.690946"], ["updated_at", "2017-05-25 01:33:19.690946"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'o3GD061E5u4qrcetFWtvEA' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Ms. Hubert Altenwerth' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Ms. Hubert Altenwerth"], ["password_digest", "$2a$10$LJuMfdgwCh1PBNeTRGXcr.92vhc8XA3ycl7sZwBe69GM0xFfNTlFC"], ["session_token", "o3GD061E5u4qrcetFWtvEA"], ["created_at", "2017-05-25 01:33:19.765193"], ["updated_at", "2017-05-25 01:33:19.765193"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 7], ["name", "waistcoat"], ["color", "black"], ["sex", "F"], ["description", "Heirloom normcore sustainable master food truck put a bird on it biodiesel selvage."], ["birth_date", "2010-08-13"], ["created_at", "2017-05-25 01:33:19.767768"], ["updated_at", "2017-05-25 01:33:19.767768"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'FVodZYbCdJGBnp4iL6kgRA' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Jairo Kunze' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Jairo Kunze"], ["password_digest", "$2a$10$5uuznfzbU1h51lJW1.iWFOsvHQXbYUEUEyUgRTLWOc2sZo5E1KovO"], ["session_token", "FVodZYbCdJGBnp4iL6kgRA"], ["created_at", "2017-05-25 01:33:19.842461"], ["updated_at", "2017-05-25 01:33:19.842461"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 8], ["name", "organic"], ["color", "brown"], ["sex", "F"], ["description", "90's bicycle rights irony master chia vinyl bespoke pitchfork pickled."], ["birth_date", "2010-12-22"], ["created_at", "2017-05-25 01:33:19.845242"], ["updated_at", "2017-05-25 01:33:19.845242"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.3ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'XjBVseV8kP0Wp4F8U83vKQ' LIMIT 1
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Sydney Hudson DDS' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Sydney Hudson DDS"], ["password_digest", "$2a$10$49GOyGcFUb3ZXkd7ebppfeOMkieTSCkBCvRtKcppDANDjT7q2WEfW"], ["session_token", "XjBVseV8kP0Wp4F8U83vKQ"], ["created_at", "2017-05-25 01:33:19.920227"], ["updated_at", "2017-05-25 01:33:19.920227"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 9], ["name", "skateboard"], ["color", "white"], ["sex", "M"], ["description", "Gluten-free roof bespoke five dollar toast typewriter butcher godard."], ["birth_date", "2013-03-26"], ["created_at", "2017-05-25 01:33:19.922678"], ["updated_at", "2017-05-25 01:33:19.922678"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = '9-JyPjVyhSbD6rIZZBLRtQ' LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Murphy Lindgren' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "password_digest", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["username", "Murphy Lindgren"], ["password_digest", "$2a$10$48aXmN94dumcRUFhBoSulOpNBBnhhM2VafIWnPVlEPjjSc2E6YIo2"], ["session_token", "9-JyPjVyhSbD6rIZZBLRtQ"], ["created_at", "2017-05-25 01:33:19.997781"], ["updated_at", "2017-05-25 01:33:19.997781"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "cats" ("user_id", "name", "color", "sex", "description", "birth_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["user_id", 10], ["name", "ennui"], ["color", "white"], ["sex", "F"], ["description", "Salvia neutra kale chips plaid trust fund small batch."], ["birth_date", "2011-12-13"], ["created_at", "2017-05-25 01:33:20.000388"], ["updated_at", "2017-05-25 01:33:20.000388"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+DEPRECATION WARNING: You didn't set `secret_key_base`. Read the upgrade documentation to learn more about this new config option. (called from service at /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140)
+
+
+Started GET "/" for ::1 at 2017-05-24 21:33:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/cats" for ::1 at 2017-05-24 21:33:49 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (1.3ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (22.7ms)
+Completed 200 OK in 87ms (Views: 67.4ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:33:49 -0400
+
+
+Started GET "/cats/1" for ::1 at 2017-05-24 21:33:55 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCat Load (0.5ms)[0m  [1mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mCatRentalRequest Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 1]]
+  Rendered cats/show.html.erb within layouts/application (446.0ms)
+Completed 200 OK in 462ms (Views: 445.4ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:33:55 -0400
+
+
+Started GET "/session/new" for ::1 at 2017-05-24 21:34:01 -0400
+Processing by SessionsController#new as HTML
+  Rendered shared/_errors.html.erb (0.7ms)
+  Rendered sessions/new.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 25ms (Views: 22.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:34:01 -0400
+
+
+Started POST "/session" for ::1 at 2017-05-24 21:34:04 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"irHDNL0xrcpOoUpd4TodUD1RP0buhpOgvRQGKut22RlYPFFFSgHB8juAvVuAdR6WNcj14uvas6WCZJZubS8cwg==", "user"=>{"username"=>"sean_snyder@comcast.net", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1  [["username", "sean_snyder@comcast.net"]]
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered sessions/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:34:04 -0400
+
+
+Started GET "/users/new" for ::1 at 2017-05-24 21:34:07 -0400
+Processing by UsersController#new as HTML
+  Rendered shared/_errors.html.erb (0.2ms)
+  Rendered users/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:34:07 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 21:34:50 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"m3/MX0eJCKoTGbj5zG7Ox8bY9gXpiqicakFdCa/Z4gtJ8l4usLlkkmY4T/+tIc0BzkE8oezWiJlVMc1NKYAn0A==", "user"=>{"username"=>"Sean", "password"=>"[FILTERED]"}}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'yreQhhL5Q8WS1sXUAMPMrA' LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."username" = 'Sean' LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["password_digest", "$2a$10$eTdlXQodgPej9vx8yLBDrOwOIMl4kDqhmgEnE13b2E/JqjWWobnSO"], ["username", "Sean"], ["session_token", "yreQhhL5Q8WS1sXUAMPMrA"], ["created_at", "2017-05-25 01:34:50.997531"], ["updated_at", "2017-05-25 01:34:50.997531"]]
+  [1m[36m (1.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '8RqQ198bWDThsDnR_KVdew' AND "users"."id" != 11) LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Sean' AND "users"."id" != 11) LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"], ["updated_at", "2017-05-25 01:34:51.014187"], ["id", 11]]
+  [1m[35m (1.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 104ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/cats" for ::1 at 2017-05-24 21:34:51 -0400
+Processing by CatsController#index as HTML
+  [1m[36mCat Load (0.5ms)[0m  [1mSELECT "cats".* FROM "cats"[0m
+  Rendered cats/index.html.erb within layouts/application (3.0ms)
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:34:51 -0400
+
+
+Started GET "/cats/new" for ::1 at 2017-05-24 21:35:03 -0400
+Processing by CatsController#new as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  Rendered shared/_errors.html.erb (0.2ms)
+  Rendered cats/_form.html.erb (1.2ms)
+  Rendered cats/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 13ms (Views: 9.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:35:03 -0400
+
+
+Started POST "/cats" for ::1 at 2017-05-24 21:35:53 -0400
+Processing by CatsController#create as HTML
+  Parameters: {"authenticity_token"=>"YQ++gxhLL6xNQ1W52QLMp+ZwUhNoKwTpFIvStC25fUOzgizy73tDlDhior+4Tc9h7umYt213JOwr+0Lwq+C4mA==", "cat"=>{"name"=>"Rogers Hornsby", "birth_date"=>"2016-06-01", "color"=>"brown", "sex"=>"M", "description"=>"Six of one, A dozen of the other."}}
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "cats" ("birth_date", "color", "description", "name", "sex", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["birth_date", "2016-06-01"], ["color", "brown"], ["description", "Six of one, A dozen of the other."], ["name", "Rogers Hornsby"], ["sex", "M"], ["user_id", 11], ["created_at", "2017-05-25 01:35:53.722407"], ["updated_at", "2017-05-25 01:35:53.722407"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/cats/11
+Completed 302 Found in 15ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 21:35:53 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mCat Load (0.4ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 11]]
+  Rendered cats/show.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 10ms (Views: 7.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:35:53 -0400
+
+
+Started GET "/cat_rental_requests/new" for ::1 at 2017-05-24 21:36:05 -0400
+Processing by CatRentalRequestsController#new as HTML
+  Rendered shared/_errors.html.erb (0.2ms)
+  [1m[35mCat Load (0.5ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cat_rental_requests/new.html.erb within layouts/application (4.3ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+Completed 200 OK in 20ms (Views: 11.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:36:05 -0400
+
+
+Started POST "/cat_rental_requests" for ::1 at 2017-05-24 21:36:21 -0400
+Processing by CatRentalRequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"Y+WuTp83phKqJFENZHiS0bJT3Ds4MIAY9SL4mqO+pX+xaDw/aAfKKt8FpgsFN5EXusoWnz1soB3KUmjeJedgpA==", "cat_rental_request"=>{"cat_id"=>"11", "start_date"=>"2017-05-24", "end_date"=>"2017-05-27"}}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "cat_rental_requests" WHERE ("cat_rental_requests"."id" IS NOT NULL) AND "cat_rental_requests"."cat_id" = $1 AND (         NOT( (start_date > '2017-05-27') OR (end_date < '2017-05-24') )
+) AND (status = 'APPROVED')  [["cat_id", 11]]
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "cat_rental_requests" ("cat_id", "end_date", "start_date", "status", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["cat_id", 11], ["end_date", "2017-05-27"], ["start_date", "2017-05-24"], ["status", "PENDING"], ["user_id", 11], ["created_at", "2017-05-25 01:36:21.599909"], ["updated_at", "2017-05-25 01:36:21.599909"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mCat Load (0.5ms)[0m  [1mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1[0m  [["id", 11]]
+Redirected to http://localhost:3000/cats/11
+Completed 302 Found in 15ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 21:36:21 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mCat Load (0.4ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 11]]
+  [1m[35mCatRentalRequest Load (0.6ms)[0m  SELECT "cat_rental_requests".* FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1  ORDER BY start_date  [["cat_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  Rendered cats/_req_tr.html.erb (4.1ms)
+  Rendered cats/show.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 18ms (Views: 14.5ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:36:21 -0400
+
+
+Started POST "/cat_rental_requests/1/approve" for ::1 at 2017-05-24 21:36:34 -0400
+Processing by CatRentalRequestsController#approve as HTML
+  Parameters: {"authenticity_token"=>"d/mpy4oIOu7P7Xcj9kDxSpZoVISDVK5PVUxcBW/dQo6ldDu6fThW1rrMgCWXD/KMnvGeIIYIjkpqPMxB6YSHVQ==", "id"=>"1"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Load (0.5ms)[0m  [1mSELECT  "cat_rental_requests".* FROM "cat_rental_requests" WHERE "cat_rental_requests"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mCat Load (0.5ms)[0m  SELECT "cats".* FROM "cats" WHERE "cats"."id" IN (11)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.5ms)[0m  SELECT COUNT(*) FROM "cat_rental_requests" WHERE ("cat_rental_requests"."id" != $1) AND "cat_rental_requests"."cat_id" = $2 AND (         NOT( (start_date > '2017-05-27') OR (end_date < '2017-05-24') )
+) AND (status = 'APPROVED')  [["id", 1], ["cat_id", 11]]
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "cat_rental_requests" SET "status" = $1, "updated_at" = $2 WHERE "cat_rental_requests"."id" = $3[0m  [["status", "APPROVED"], ["updated_at", "2017-05-25 01:36:34.278513"], ["id", 1]]
+  [1m[35mSQL (0.4ms)[0m  UPDATE "cat_rental_requests" SET "status" = 'DENIED' WHERE ("cat_rental_requests"."id" != $1) AND "cat_rental_requests"."cat_id" = $2 AND (         NOT( (start_date > '2017-05-27') OR (end_date < '2017-05-24') )
+) AND (status = 'PENDING')  [["id", 1], ["cat_id", 11]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/cats/11
+Completed 302 Found in 18ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 21:36:34 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mCat Load (0.5ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 11]]
+  [1m[35mCatRentalRequest Load (0.5ms)[0m  SELECT "cat_rental_requests".* FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1  ORDER BY start_date  [["cat_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  Rendered cats/_req_tr.html.erb (0.8ms)
+  Rendered cats/show.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 18ms (Views: 13.8ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 21:36:34 -0400
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 22:27:57 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mCat Load (0.6ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 11]]
+  [1m[35mCatRentalRequest Load (0.4ms)[0m  SELECT "cat_rental_requests".* FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1  ORDER BY start_date  [["cat_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  Rendered cats/_req_tr.html.erb (4.0ms)
+  Rendered cats/show.html.erb within layouts/application (42.7ms)
+Completed 200 OK in 67ms (Views: 44.2ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:27:57 -0400
+
+
+Started GET "/cats/11/edit" for ::1 at 2017-05-24 22:28:01 -0400
+Processing by CatsController#edit as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCat Load (1.1ms)[0m  [1mSELECT  "cats".* FROM "cats" WHERE "cats"."user_id" = $1 AND "cats"."id" = $2 LIMIT 1[0m  [["user_id", 11], ["id", 11]]
+  Rendered shared/_errors.html.erb (0.6ms)
+  Rendered cats/_form.html.erb (2.7ms)
+  Rendered cats/edit.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 29ms (Views: 17.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:28:01 -0400
+
+
+Started PATCH "/cats/11" for ::1 at 2017-05-24 22:28:10 -0400
+Processing by CatsController#update as HTML
+  Parameters: {"authenticity_token"=>"8XHdDocVfq2gWe3kPYyKoehCYlsdp0pgk3sL/bYfUQ8j/E9/cCUSldV4GuJcw4ln4Nuo/xj7amWsC5u5MEaU1A==", "cat"=>{"name"=>"Rogers Hornsby", "birth_date"=>"2016-06-01", "color"=>"brown", "sex"=>"M", "description"=>"Six of one, A dozen of the other Kind."}, "id"=>"11"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCat Load (0.7ms)[0m  [1mSELECT  "cats".* FROM "cats" WHERE "cats"."user_id" = $1 AND "cats"."id" = $2 LIMIT 1[0m  [["user_id", 11], ["id", 11]]
+  [1m[35m (0.7ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "cats" SET "description" = $1, "updated_at" = $2 WHERE "cats"."id" = $3[0m  [["description", "Six of one, A dozen of the other Kind."], ["updated_at", "2017-05-25 02:28:10.324104"], ["id", 11]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/cats/11
+Completed 302 Found in 14ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 22:28:10 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mCat Load (0.4ms)[0m  [1mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[35mCatRentalRequest Exists (0.3ms)[0m  SELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1  [["cat_id", 11]]
+  [1m[36mCatRentalRequest Load (0.5ms)[0m  [1mSELECT "cat_rental_requests".* FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1  ORDER BY start_date[0m  [["cat_id", 11]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  Rendered cats/_req_tr.html.erb (0.9ms)
+  Rendered cats/show.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 14ms (Views: 10.6ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:28:10 -0400
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 22:46:17 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mCat Load (0.3ms)[0m  [1mSELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  Rendered cats/show.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.3ms)
+
+SyntaxError - syntax error, unexpected keyword_ensure, expecting end-of-input:
+  app/views/cats/show.html.erb:51:in `'
+  actionview (4.2.8) lib/action_view/template.rb:296:in `compile'
+  actionview (4.2.8) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.2.8) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.8) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.8) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.2.8) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.2.8) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.8) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.8) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.8) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.8) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.8) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.8) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.8) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.8) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.8) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  app/controllers/cats_controller.rb:12:in `show'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:25:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/63be263c055caefc/variables" for ::1 at 2017-05-24 22:46:18 -0400
+
+
+Started GET "/cats/11" for ::1 at 2017-05-24 22:47:03 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[35mCat Load (0.3ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 11]]
+  [1m[35mCatRentalRequest Load (0.5ms)[0m  SELECT "cat_rental_requests".* FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1  ORDER BY start_date  [["cat_id", 11]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 11]]
+  Rendered cats/_req_tr.html.erb (1.0ms)
+  Rendered cats/show.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 15ms (Views: 12.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:47:03 -0400
+
+
+Started GET "/cat_rental_requests/new" for ::1 at 2017-05-24 22:47:26 -0400
+Processing by CatRentalRequestsController#new as HTML
+  Rendered shared/_errors.html.erb (0.2ms)
+  [1m[35mCat Load (0.5ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cat_rental_requests/new.html.erb within layouts/application (3.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:47:26 -0400
+
+
+Started GET "/cat_rental_requests/new" for ::1 at 2017-05-24 22:52:50 -0400
+Processing by CatRentalRequestsController#new as HTML
+  Rendered shared/_errors.html.erb (0.2ms)
+  [1m[35mCat Load (0.5ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cat_rental_requests/new.html.erb within layouts/application (3.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+Completed 200 OK in 10ms (Views: 8.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:52:50 -0400
+
+
+Started GET "/cats" for ::1 at 2017-05-24 22:52:53 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (0.6ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (3.8ms)
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:52:53 -0400
+
+
+Started GET "/cats/9" for ::1 at 2017-05-24 22:53:00 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCat Load (1.0ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 9]]
+  Rendered cats/show.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 15ms (Views: 10.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 22:53:00 -0400
+
+
+Started GET "/cats/9" for ::1 at 2017-05-24 23:24:38 -0400
+Processing by CatsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[35mCat Load (0.4ms)[0m  SELECT  "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36mCatRentalRequest Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "cat_rental_requests" WHERE "cat_rental_requests"."cat_id" = $1 LIMIT 1[0m  [["cat_id", 9]]
+  Rendered cats/show.html.erb within layouts/application (25.4ms)
+Completed 200 OK in 52ms (Views: 29.7ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:24:38 -0400
+
+
+Started DELETE "/session" for ::1 at 2017-05-24 23:24:44 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"5fJLZiBAj270/QB0ARB71RRFAxa7QST0PH51hZUOtUo3f9kX13DjVoHc93JgX3gTHNzJsr4dBPEDDuXBE1dwkQ=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "8RqQ198bWDThsDnR_KVdew"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'xOVM7KTmzjKtRpXcpjBLjA' AND "users"."id" != 11) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Sean' AND "users"."id" != 11) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "xOVM7KTmzjKtRpXcpjBLjA"], ["updated_at", "2017-05-25 03:24:44.277117"], ["id", 11]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 10ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/session/new" for ::1 at 2017-05-24 23:24:44 -0400
+Processing by SessionsController#new as HTML
+  Rendered shared/_errors.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:24:44 -0400
+
+
+Started GET "/users/new" for ::1 at 2017-05-24 23:24:49 -0400
+Processing by UsersController#new as HTML
+  Rendered shared/_errors.html.erb (0.4ms)
+  Rendered users/new.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:24:49 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:25:03 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"ySstH8S75wunFMzaUi4cZvv4FDIsvKaBqpnkCuWvCikbpr9uM4uLM9I1O9wzYR+g82HelinghoSV6XROY/bP8g==", "user"=>{"username"=>"Billy", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'el-z_n2X1gikvwk_Xmf3HQ' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Billy' LIMIT 1
+  [1m[36m (0.4ms)[0m  [1mROLLBACK[0m
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered users/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 89ms (Views: 5.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:25:03 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:25:10 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"PxZeNBKeHGxuzkMj+vN8y/FFuUfjpNmIp0o+lUtxou7tm8xF5a5wVBvvtCWbvH8N+dxz4+b4+Y2YOq7RzShnNQ==", "user"=>{"username"=>"Billy", "password"=>"[FILTERED]"}}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = '2-ryknWOxr7tx7g_wEl8dg' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Billy' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$GfSfYtL1rhzNUaIagq0USu0j8E1lT2NgGa7M9Cy3PYdaK7l6OM2Jq"], ["username", "Billy"], ["session_token", "2-ryknWOxr7tx7g_wEl8dg"], ["created_at", "2017-05-25 03:25:10.851037"], ["updated_at", "2017-05-25 03:25:10.851037"]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'HRBJrmEirLbwVhMlghOehQ' AND "users"."id" != 12) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Billy' AND "users"."id" != 12) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "HRBJrmEirLbwVhMlghOehQ"], ["updated_at", "2017-05-25 03:25:10.858407"], ["id", 12]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 7.3ms
+Completed 500 Internal Server Error in 119ms (ActiveRecord: 5.7ms)
+
+NoMethodError - undefined method `email' for #<User:0x007ff66fd80d70>:
+  activemodel (4.2.8) lib/active_model/attribute_methods.rb:433:in `method_missing'
+  app/mailers/user_mailer.rb:7:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/6f9199712f1ea4b2/variables" for ::1 at 2017-05-24 23:25:11 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:27:13 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"PxZeNBKeHGxuzkMj+vN8y/FFuUfjpNmIp0o+lUtxou7tm8xF5a5wVBvvtCWbvH8N+dxz4+b4+Y2YOq7RzShnNQ==", "user"=>{"username"=>"Billy", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'bnmwDoYOfaWz2dTXYDEgfw' LIMIT 1[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Billy' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  Rendered shared/_errors.html.erb (0.2ms)
+  Rendered users/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 103ms (Views: 9.6ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:27:13 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:27:24 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"BZ6yl4RyMYvTTwwmYhPgAsQrnrGJTbW9dET/Mn6O6PbXEyDmc0Jds6Zu+yADXOPEzLJUFYwRlbhLNG92+NctLQ==", "user"=>{"username"=>"Jacob", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'QDteVDhMMAZw33VfdrvHFA' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Jacob' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$zJ1FkKFqQbYGAg7Hw0tNvuNzZhoS..SJ7zNmWtjsl4EO0O6OzGOPy"], ["username", "Jacob"], ["session_token", "QDteVDhMMAZw33VfdrvHFA"], ["created_at", "2017-05-25 03:27:24.091815"], ["updated_at", "2017-05-25 03:27:24.091815"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '6RXOAciLke-9H8Rwl5vblg' AND "users"."id" != 13) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Jacob' AND "users"."id" != 13) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "6RXOAciLke-9H8Rwl5vblg"], ["updated_at", "2017-05-25 03:27:24.098613"], ["id", 13]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 33.9ms
+Completed 500 Internal Server Error in 136ms (ActiveRecord: 5.3ms)
+
+ActionView::MissingTemplate - Missing template user_mailer/welcome_email with "mailer". Searched in:
+  * "user_mailer"
+:
+  actionmailer (4.2.8) lib/action_mailer/base.rb:916:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:7:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/69debc349eeda17c/variables" for ::1 at 2017-05-24 23:27:24 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:31:37 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"BZ6yl4RyMYvTTwwmYhPgAsQrnrGJTbW9dET/Mn6O6PbXEyDmc0Jds6Zu+yADXOPEzLJUFYwRlbhLNG92+NctLQ==", "user"=>{"username"=>"Jonas", "password"=>"[FILTERED]"}}
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'a5PK-mITz5AeMIXOXkr2EQ' LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Jonas' LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$KGUzzOcUEuYPqWPAlpxEzesa/pxiXpxXWi3STdnleO6L2R2AbLbA."], ["username", "Jonas"], ["session_token", "a5PK-mITz5AeMIXOXkr2EQ"], ["created_at", "2017-05-25 03:31:37.711883"], ["updated_at", "2017-05-25 03:31:37.711883"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '8LaOztc8YfYs05hUybl7Hw' AND "users"."id" != 14) LIMIT 1
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Jonas' AND "users"."id" != 14) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "8LaOztc8YfYs05hUybl7Hw"], ["updated_at", "2017-05-25 03:31:37.719292"], ["id", 14]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 26.7ms
+Completed 500 Internal Server Error in 143ms (ActiveRecord: 9.4ms)
+
+ActionView::MissingTemplate - Missing template layouts/mailer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/seanmsnyder/Desktop/homework/W4D4/app/views"
+:
+  actionview (4.2.8) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.8) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:86:in `resolve_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:93:in `resolve_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:76:in `block in find_layout'
+  actionview (4.2.8) lib/action_view/lookup_context.rb:246:in `with_layout_format'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:18:in `with_layout_format'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:76:in `find_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:60:in `render_with_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.8) lib/action_view/rendering.rb:100:in `_render_template'
+  actionview (4.2.8) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.8) lib/abstract_controller/rendering.rb:25:in `render'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:904:in `block in collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:918:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:7:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/b80e8dddc49eb911/variables" for ::1 at 2017-05-24 23:31:38 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:38:15 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"BZ6yl4RyMYvTTwwmYhPgAsQrnrGJTbW9dET/Mn6O6PbXEyDmc0Jds6Zu+yADXOPEzLJUFYwRlbhLNG92+NctLQ==", "user"=>{"username"=>"Zengato", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'w0yDHvcZwgKJS1yrAREDyw' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Zengato' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$1H6ppYLdPfyIyAHXyVJ66O7ccQKT8wuu64K.hSjGg4cH65/1nH86G"], ["username", "Zengato"], ["session_token", "w0yDHvcZwgKJS1yrAREDyw"], ["created_at", "2017-05-25 03:38:16.008323"], ["updated_at", "2017-05-25 03:38:16.008323"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '2cp6Dp9c8yDE4Bo2TxwHzw' AND "users"."id" != 15) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Zengato' AND "users"."id" != 15) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "2cp6Dp9c8yDE4Bo2TxwHzw"], ["updated_at", "2017-05-25 03:38:16.014394"], ["id", 15]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 25.6ms
+Completed 500 Internal Server Error in 132ms (ActiveRecord: 7.2ms)
+
+ActionView::MissingTemplate - Missing template layouts/welcome_email with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/seanmsnyder/Desktop/homework/W4D4/app/views"
+:
+  actionview (4.2.8) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.8) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:86:in `resolve_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:93:in `resolve_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:76:in `block in find_layout'
+  actionview (4.2.8) lib/action_view/lookup_context.rb:246:in `with_layout_format'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:18:in `with_layout_format'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:76:in `find_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:60:in `render_with_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.8) lib/action_view/rendering.rb:100:in `_render_template'
+  actionview (4.2.8) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.8) lib/abstract_controller/rendering.rb:25:in `render'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:904:in `block in collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:918:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:8:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/e784f62621e41879/variables" for ::1 at 2017-05-24 23:38:16 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:39:50 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"BZ6yl4RyMYvTTwwmYhPgAsQrnrGJTbW9dET/Mn6O6PbXEyDmc0Jds6Zu+yADXOPEzLJUFYwRlbhLNG92+NctLQ==", "user"=>{"username"=>"Xena", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'w5nzg3fHyrjIFL3_SagakA' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Xena' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$vE8Qh.9nGGqhyee1oBKrFecXqm5QrlelURctsz6dEIHQeyRs0wyJK"], ["username", "Xena"], ["session_token", "w5nzg3fHyrjIFL3_SagakA"], ["created_at", "2017-05-25 03:39:50.491598"], ["updated_at", "2017-05-25 03:39:50.491598"]]
+  [1m[35m (1.2ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '_0pT9DwL_ZfAn6icgLD3bQ' AND "users"."id" != 16) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Xena' AND "users"."id" != 16) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "_0pT9DwL_ZfAn6icgLD3bQ"], ["updated_at", "2017-05-25 03:39:50.498167"], ["id", 16]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 8.4ms
+Completed 500 Internal Server Error in 111ms (ActiveRecord: 8.2ms)
+
+ActionView::MissingTemplate - Missing template user_mailer/welcome_email with "mailer". Searched in:
+  * "user_mailer"
+:
+  actionmailer (4.2.8) lib/action_mailer/base.rb:916:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:8:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/b753ac45753bd7da/variables" for ::1 at 2017-05-24 23:39:50 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:44:03 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"BZ6yl4RyMYvTTwwmYhPgAsQrnrGJTbW9dET/Mn6O6PbXEyDmc0Jds6Zu+yADXOPEzLJUFYwRlbhLNG92+NctLQ==", "user"=>{"username"=>"Xena", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'tvwGS8Wzv2_o1M9XM_osaQ' LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Xena' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  Rendered shared/_errors.html.erb (0.3ms)
+  Rendered users/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 105ms (Views: 12.0ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:44:03 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:44:08 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"fNCsYYQUIvlyHLBpA2vwSgDhgPpY4nS52IQ2hK3XsHeuXT4QcyROwQc9R29iJPOMCHhKXl2+VLzn9KbAK451rA==", "user"=>{"username"=>"XenaX", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'fbLwEClRqtgCl1OX1mYVTA' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'XenaX' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$irtOJThEJpRe8kTafk110OoFU12a3VbQSpHv.P6V2B9VpbIv7TXQ6"], ["username", "XenaX"], ["session_token", "fbLwEClRqtgCl1OX1mYVTA"], ["created_at", "2017-05-25 03:44:08.292498"], ["updated_at", "2017-05-25 03:44:08.292498"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'IWY6nFanp3j5a8Un2_6Ulg' AND "users"."id" != 17) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'XenaX' AND "users"."id" != 17) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "IWY6nFanp3j5a8Un2_6Ulg"], ["updated_at", "2017-05-25 03:44:08.298339"], ["id", 17]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 11.6ms
+Completed 500 Internal Server Error in 120ms (ActiveRecord: 4.5ms)
+
+ActionView::MissingTemplate - Missing template user_mailer/welcome_email with "mailer". Searched in:
+  * "user_mailer"
+:
+  actionmailer (4.2.8) lib/action_mailer/base.rb:916:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:7:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/11b46db3f0adcfad/variables" for ::1 at 2017-05-24 23:44:08 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:46:26 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"fNCsYYQUIvlyHLBpA2vwSgDhgPpY4nS52IQ2hK3XsHeuXT4QcyROwQc9R29iJPOMCHhKXl2+VLzn9KbAK451rA==", "user"=>{"username"=>"XenaX", "password"=>"[FILTERED]"}}
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'BkgXBu2HoNPVwohL2PoGdg' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'XenaX' LIMIT 1
+  [1m[36m (0.5ms)[0m  [1mROLLBACK[0m
+  Rendered shared/_errors.html.erb (0.3ms)
+  Rendered users/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 97ms (Views: 7.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:46:26 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:46:30 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"PcCd198zLqeudtUFFFoSLZEqEmwi4mf7ZB8uR7OQ9kTvTQ+mKANCn9tXIgN1FRHrmbPYyCe+R/5bb74DNckznw==", "user"=>{"username"=>"XenaXa", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'SjRlnl-0Bu2bYTHTcaPemg' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'XenaXa' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$5VB6Ncj6KlP5kRVa9raDWukVrMFeVajIorZph9tx7rG0eyoMpf0SW"], ["username", "XenaXa"], ["session_token", "SjRlnl-0Bu2bYTHTcaPemg"], ["created_at", "2017-05-25 03:46:30.639649"], ["updated_at", "2017-05-25 03:46:30.639649"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '45_GFBC_KG_EdwnuasRxHQ' AND "users"."id" != 18) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'XenaXa' AND "users"."id" != 18) LIMIT 1[0m
+  [1m[35mSQL (2.1ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "45_GFBC_KG_EdwnuasRxHQ"], ["updated_at", "2017-05-25 03:46:30.645530"], ["id", 18]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+
+UserMailer#welcome_email: processed outbound mail in 25.1ms
+Completed 500 Internal Server Error in 116ms (ActiveRecord: 6.4ms)
+
+ActionView::MissingTemplate - Missing template layouts/mailer with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :jbuilder, :coffee]}. Searched in:
+  * "/Users/seanmsnyder/Desktop/homework/W4D4/app/views"
+:
+  actionview (4.2.8) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.8) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:86:in `resolve_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:93:in `resolve_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:76:in `block in find_layout'
+  actionview (4.2.8) lib/action_view/lookup_context.rb:246:in `with_layout_format'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:18:in `with_layout_format'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:76:in `find_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:60:in `render_with_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.8) lib/action_view/rendering.rb:100:in `_render_template'
+  actionview (4.2.8) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.8) lib/abstract_controller/rendering.rb:25:in `render'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:904:in `block in collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:918:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:7:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/32119ba2148d9d3f/variables" for ::1 at 2017-05-24 23:46:31 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:47:12 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"PcCd198zLqeudtUFFFoSLZEqEmwi4mf7ZB8uR7OQ9kTvTQ+mKANCn9tXIgN1FRHrmbPYyCe+R/5bb74DNckznw==", "user"=>{"username"=>"Barny", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'LHHYtimlA9Cp-iW9GyJFyw' LIMIT 1[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Barny' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$7G9IG/O6nGvwxt8VWPQD1esWpkSKahv.DczvTtHjuTh6T/eZykm5u"], ["username", "Barny"], ["session_token", "LHHYtimlA9Cp-iW9GyJFyw"], ["created_at", "2017-05-25 03:47:12.452658"], ["updated_at", "2017-05-25 03:47:12.452658"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '5tmimdTFV2KOIbipwzUM9A' AND "users"."id" != 19) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Barny' AND "users"."id" != 19) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "5tmimdTFV2KOIbipwzUM9A"], ["updated_at", "2017-05-25 03:47:12.458161"], ["id", 19]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  Rendered user_mailer/welcome_email.html.erb (6.7ms)
+
+UserMailer#welcome_email: processed outbound mail in 34.1ms
+Completed 500 Internal Server Error in 143ms (ActiveRecord: 7.5ms)
+
+NoMethodError - undefined method `name' for #<User:0x007ff671ad6b90>:
+  activemodel (4.2.8) lib/active_model/attribute_methods.rb:433:in `method_missing'
+  app/views/user_mailer/welcome_email.html.erb:8:in `_app_views_user_mailer_welcome_email_html_erb___4238860224320948126_70348222998420'
+  actionview (4.2.8) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.8) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.8) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.8) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.8) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.8) lib/action_view/rendering.rb:100:in `_render_template'
+  actionview (4.2.8) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.8) lib/abstract_controller/rendering.rb:25:in `render'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:904:in `block in collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:918:in `each_template'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:900:in `collect_responses'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:829:in `mail'
+  app/mailers/user_mailer.rb:8:in `welcome_email'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:596:in `block in process'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:593:in `process'
+  actionmailer (4.2.8) lib/action_mailer/base.rb:584:in `initialize'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:25:in `__getobj__'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:34:in `message'
+  actionmailer (4.2.8) lib/action_mailer/message_delivery.rb:85:in `deliver_now'
+  app/controllers/users_controller.rb:9:in `create'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/bf57c9eed8491f0e/variables" for ::1 at 2017-05-24 23:47:13 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:48:51 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"PcCd198zLqeudtUFFFoSLZEqEmwi4mf7ZB8uR7OQ9kTvTQ+mKANCn9tXIgN1FRHrmbPYyCe+R/5bb74DNckznw==", "user"=>{"username"=>"Barny", "password"=>"[FILTERED]"}}
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'WHDDf0rHM3BpRwa_qmNMxg' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Barny' LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mROLLBACK[0m
+  Rendered shared/_errors.html.erb (0.2ms)
+  Rendered users/new.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 91ms (Views: 9.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:48:51 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:48:59 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"9jtcNwfH9yHkhQb5f/4o7qpZKwqm4e9eJmP2XHIVwkgkts5G8PebGZGk8f8esSsoosDhrqO9z1sZE2YY9EwHkw==", "user"=>{"username"=>"TheOne", "password"=>"[FILTERED]"}}
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 't6lCi8fBShsPI8WgIUU9YQ' LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'TheOne' LIMIT 1
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$bQrHiIACh.lZM8zUKem0I.jcNJKnUxILEHRvRPKlg6zhIYWTE3MKm"], ["username", "TheOne"], ["session_token", "t6lCi8fBShsPI8WgIUU9YQ"], ["created_at", "2017-05-25 03:48:59.104877"], ["updated_at", "2017-05-25 03:48:59.104877"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'WalVnYkd6Q-AoR371k2VGw' AND "users"."id" != 20) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'TheOne' AND "users"."id" != 20) LIMIT 1[0m
+  [1m[35mSQL (2.2ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "WalVnYkd6Q-AoR371k2VGw"], ["updated_at", "2017-05-25 03:48:59.112681"], ["id", 20]]
+  [1m[36m (1.2ms)[0m  [1mCOMMIT[0m
+  Rendered user_mailer/welcome_email.html.erb (0.9ms)
+
+UserMailer#welcome_email: processed outbound mail in 33.6ms
+
+Sent mail to everybody@appacademy.io (13.2ms)
+Date: Wed, 24 May 2017 23:48:59 -0400
+From: ninelives@friskies.com
+To: everybody@appacademy.io
+Message-ID: <5926542b270d2_1844b3ffb365842082175@Seans-MBP.home.mail>
+Subject: W4D5 End-Of-Day
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <h1>Hey TheOne</h1>
+    <p>
+      You did a lot today.  We made auth from scratch,
+      sat in a hot lecture room, and managed to still
+      have a ton of homework left.
+    </p>
+
+    <p>Congratulation</p>
+
+
+    <p>Check out this link on bootcamps: http://www.appacademy.io/happy_hour</p>
+
+    <p>See you bright and early...</p>
+  </body>
+</html>
+
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 139ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/cats" for ::1 at 2017-05-24 23:48:59 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (1.3ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (19.5ms)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 200 OK in 41ms (Views: 27.9ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:48:59 -0400
+
+
+Started DELETE "/session" for ::1 at 2017-05-24 23:51:19 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"DvFWDvIU8KjslxeDGgeFYCbHXhZuZ3P3ze6NZB4nWvHcfMR/BSSckJm24IV7SIamLl6Usms7U/Lynh0gmH6fKg=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = '7MSuQrAXsajsuVuSI4IfLQ' AND "users"."id" != 20) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'TheOne' AND "users"."id" != 20) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "7MSuQrAXsajsuVuSI4IfLQ"], ["updated_at", "2017-05-25 03:51:19.621831"], ["id", 20]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 18605ms (ActiveRecord: 2.5ms)
+
+
+Started DELETE "/session" for ::1 at 2017-05-24 23:51:38 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"DvFWDvIU8KjslxeDGgeFYCbHXhZuZ3P3ze6NZB4nWvHcfMR/BSSckJm24IV7SIamLl6Usms7U/Lynh0gmH6fKg=="}
+  [1m[35mUser Load (3.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 3.9ms)
+
+NoMethodError - undefined method `reset_session_token!' for nil:NilClass:
+  app/controllers/application_controller.rb:27:in `logout_user!'
+  app/controllers/sessions_controller.rb:20:in `destroy'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/7ffa38db1f0144dc/variables" for ::1 at 2017-05-24 23:51:39 -0400
+
+
+Started DELETE "/session" for ::1 at 2017-05-24 23:51:48 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"DvFWDvIU8KjslxeDGgeFYCbHXhZuZ3P3ze6NZB4nWvHcfMR/BSSckJm24IV7SIamLl6Usms7U/Lynh0gmH6fKg=="}
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.3ms)
+
+NoMethodError - undefined method `reset_session_token!' for nil:NilClass:
+  app/controllers/application_controller.rb:27:in `logout_user!'
+  app/controllers/sessions_controller.rb:20:in `destroy'
+  actionpack (4.2.8) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.8) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.8) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.8) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.8) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.8) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.8) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.8) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.8) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.8) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.8) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/agent_hooks.rb:30:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/rack/browser_monitoring.rb:32:in `traced_call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:38:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/query_cache.rb:36:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activerecord (4.2.8) lib/active_record/migration.rb:377:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.8) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.8) lib/rails/rack/logger.rb:20:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  activesupport (4.2.8) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  actionpack (4.2.8) lib/action_dispatch/middleware/static.rb:120:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  railties (4.2.8) lib/rails/engine.rb:518:in `call'
+  railties (4.2.8) lib/rails/application.rb:165:in `call'
+  newrelic_rpm (4.1.0.333) lib/new_relic/agent/instrumentation/middleware_tracing.rb:92:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/06a2420914857b2f/variables" for ::1 at 2017-05-24 23:51:49 -0400
+
+
+Started GET "/cats" for ::1 at 2017-05-24 23:51:52 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (0.5ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (2.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:51:53 -0400
+
+
+Started GET "/session/new" for ::1 at 2017-05-24 23:51:58 -0400
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+  Rendered shared/_errors.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (2.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 200 OK in 13ms (Views: 11.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:51:58 -0400
+
+
+Started POST "/session" for ::1 at 2017-05-24 23:52:13 -0400
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"Qp5YiEl++OtCEGeuscitC+6tRHu3wGKrdsye4RSt/lGQE8r5vk6U0zcxkKjQh67N5jSO37KcQq5JvA6lkvQ7ig==", "user"=>{"username"=>"theone", "password"=>"[FILTERED]"}}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT 1[0m  [["username", "theone"]]
+  Rendered shared/_errors.html.erb (0.1ms)
+  Rendered sessions/new.html.erb within layouts/application (1.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 200 OK in 11ms (Views: 6.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:52:13 -0400
+
+
+Started GET "/users/new" for ::1 at 2017-05-24 23:52:18 -0400
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+  Rendered shared/_errors.html.erb (0.4ms)
+  Rendered users/new.html.erb within layouts/application (2.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+Completed 200 OK in 9ms (Views: 6.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:52:18 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-24 23:53:12 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"aBPSs+Fsl0NNVR3b+MQGwFv58mGsH1aoZO6S/Nhwy1q6nkDCFlz7ezh06t2ZiwUGU2A4xalDdq1bngK4XikOgQ==", "user"=>{"username"=>"Kristman", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "WalVnYkd6Q-AoR371k2VGw"]]
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'KsPS_oHiVGHd0xAvVQkfHA' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Kristman' LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$FNgLD55mwGHE/ODbtjxbuOk6TcQqfhtyA46kk06s6N0a28Dl/FoOa"], ["username", "Kristman"], ["session_token", "KsPS_oHiVGHd0xAvVQkfHA"], ["created_at", "2017-05-25 03:53:12.431990"], ["updated_at", "2017-05-25 03:53:12.431990"]]
+  [1m[35m (0.9ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'JBBBRhQv1ssO1kUWk19npg' AND "users"."id" != 21) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Kristman' AND "users"."id" != 21) LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "JBBBRhQv1ssO1kUWk19npg"], ["updated_at", "2017-05-25 03:53:12.438639"], ["id", 21]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  Rendered user_mailer/welcome_email.html.erb (0.7ms)
+
+UserMailer#welcome_email: processed outbound mail in 25.2ms
+
+Sent mail to everybody@appacademy.io (3.9ms)
+Date: Wed, 24 May 2017 23:53:12 -0400
+From: ninelives@friskies.com
+To: everybody@appacademy.io
+Message-ID: <5926552872406_1844b3ffb365ac6b8218bf@Seans-MBP.home.mail>
+Subject: W4D5 End-Of-Day
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <h1>Hey, Kristman!</h1>
+    <p>
+      You did a lot today.  We made auth from scratch,
+      sat in a hot lecture room, and managed to still
+      have a ton of homework left.
+    </p>
+
+    <p>Congratulation</p>
+
+
+    <p>Check out this link on bootcamps: http://www.appacademy.io/happy_hour</p>
+
+    <p>See you bright and early...</p>
+  </body>
+</html>
+
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 118ms (ActiveRecord: 5.1ms)
+
+
+Started GET "/cats" for ::1 at 2017-05-24 23:53:12 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (0.5ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (2.8ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "JBBBRhQv1ssO1kUWk19npg"]]
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-24 23:53:12 -0400
+DEPRECATION WARNING: You didn't set `secret_key_base`. Read the upgrade documentation to learn more about this new config option. (called from service at /Users/seanmsnyder/.rubies/ruby-2.3.0/lib/ruby/2.3.0/webrick/httpserver.rb:140)
+
+
+Started GET "/" for ::1 at 2017-05-25 00:23:35 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+
+Started GET "/cats" for ::1 at 2017-05-25 00:23:35 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (1.1ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (20.6ms)
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "JBBBRhQv1ssO1kUWk19npg"]]
+Completed 200 OK in 80ms (Views: 54.3ms | ActiveRecord: 10.4ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-25 00:23:35 -0400
+
+
+Started DELETE "/session" for ::1 at 2017-05-25 00:23:38 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"bNfRyb04z13Z8sjyCOoHjiq3Uf/m+/y5G5B1hko2egK+WkO4SgijZazTP/RppQRIIi6bW+On3Lwk4OXCzG+/2Q=="}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "JBBBRhQv1ssO1kUWk19npg"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.7ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'TH5OZCOFW2P9jEp085ECsg' AND "users"."id" != 21) LIMIT 1
+  [1m[36mUser Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Kristman' AND "users"."id" != 21) LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "TH5OZCOFW2P9jEp085ECsg"], ["updated_at", "2017-05-25 04:23:38.776946"], ["id", 21]]
+  [1m[36m (1.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 26ms (ActiveRecord: 5.6ms)
+
+
+Started GET "/session/new" for ::1 at 2017-05-25 00:23:38 -0400
+Processing by SessionsController#new as HTML
+  Rendered shared/_errors.html.erb (0.7ms)
+  Rendered sessions/new.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 13ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-25 00:23:38 -0400
+
+
+Started GET "/users/new" for ::1 at 2017-05-25 00:23:42 -0400
+Processing by UsersController#new as HTML
+  Rendered shared/_errors.html.erb (0.2ms)
+  Rendered users/new.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-25 00:23:43 -0400
+
+
+Started POST "/users" for ::1 at 2017-05-25 00:23:54 -0400
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"8RyjBpzqX7gCq8JU+W75JwXZiYcIjzvpywPKjxwb5zojkTF3a9ozgHeKNVKYIfrhDUBDIw3TG+z0c1rLmkIi4Q==", "user"=>{"username"=>"Gandolf", "password"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = 'LXlO_Tmt8EsSpwUykpKiFg' LIMIT 1[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."username" = 'Gandolf' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "users" ("password_digest", "username", "session_token", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["password_digest", "$2a$10$.Ua1UB9wT8tc8RtrUkoX3.ZrJVUAIrBY..y1N9J0AQtMkeJgfo3PG"], ["username", "Gandolf"], ["session_token", "LXlO_Tmt8EsSpwUykpKiFg"], ["created_at", "2017-05-25 04:23:54.778874"], ["updated_at", "2017-05-25 04:23:54.778874"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.6ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'rr4jsGff1vvQviIdn7-_aw' AND "users"."id" != 22) LIMIT 1
+  [1m[36mUser Exists (1.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Gandolf' AND "users"."id" != 22) LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "rr4jsGff1vvQviIdn7-_aw"], ["updated_at", "2017-05-25 04:23:54.786022"], ["id", 22]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  Rendered user_mailer/welcome_email.html.erb (0.6ms)
+
+UserMailer#welcome_email: processed outbound mail in 169.3ms
+
+Sent mail to everybody@appacademy.io (20.3ms)
+Date: Thu, 25 May 2017 00:23:54 -0400
+From: ninelives@friskies.com
+To: everybody@appacademy.io
+Message-ID: <59265c5af12a5_7b3a3fcda298aff842870@Seans-MBP.home.mail>
+Subject: W4D5 End-Of-Day
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+    <h1>Hey, Gandolf!</h1>
+    <p>
+      You did a lot today.  We made auth from scratch,
+      sat in a hot lecture room, and managed to still
+      have a ton of homework left.
+    </p>
+
+    <p>Congratulation</p>
+
+
+    <p>Check out this link on bootcamps: http://www.appacademy.io/happy_hour</p>
+
+    <p>See you bright and early...</p>
+  </body>
+</html>
+
+Redirected to http://localhost:3000/cats
+Completed 302 Found in 304ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/cats" for ::1 at 2017-05-25 00:23:55 -0400
+Processing by CatsController#index as HTML
+  [1m[35mCat Load (0.6ms)[0m  SELECT "cats".* FROM "cats"
+  Rendered cats/index.html.erb within layouts/application (3.7ms)
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1[0m  [["session_token", "rr4jsGff1vvQviIdn7-_aw"]]
+Completed 200 OK in 13ms (Views: 10.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-25 00:23:55 -0400
+
+
+Started DELETE "/session" for ::1 at 2017-05-25 00:27:12 -0400
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"vzEr1muZsFcLfehJHKklPPps7fWuXg+hLtYORL2EoGFtvLmnnKncb35cH0995ib68vUnUasCL6QRpp4AO91lug=="}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_token" = $1 LIMIT 1  [["session_token", "rr4jsGff1vvQviIdn7-_aw"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.5ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_token" = 'gi5vlp_ziMw54S8qYxodWg' AND "users"."id" != 22) LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."username" = 'Gandolf' AND "users"."id" != 22) LIMIT 1[0m
+  [1m[35mSQL (1.9ms)[0m  UPDATE "users" SET "session_token" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_token", "gi5vlp_ziMw54S8qYxodWg"], ["updated_at", "2017-05-25 04:27:12.534405"], ["id", 22]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 12ms (ActiveRecord: 4.5ms)
+
+
+Started GET "/session/new" for ::1 at 2017-05-25 00:27:12 -0400
+Processing by SessionsController#new as HTML
+  Rendered shared/_errors.html.erb (0.3ms)
+  Rendered sessions/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for ::1 at 2017-05-25 00:27:12 -0400

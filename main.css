@@ -1,0 +1,24 @@
+body {
+  font-family: 'Arial, sans-serif';
+  background-color: antiquewhite;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+h2  {
+  font-size: 32px;
+}
+
+.ingredients-list {
+  list-style: square inside;
+}
+
+header > img {
+  width: 100px;
+}
+
+ol {
+  list-style: upper-roman inside;
+}

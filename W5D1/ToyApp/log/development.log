@@ -1,0 +1,1009 @@
+  [1m[36m (2.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (2.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCorgis (20160602040832)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCorgis (20160602040832)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "corgis" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160602040832"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCats (20160602040839)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "cats" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160602040839"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateToys (20170529031131)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "toys" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "toyable_id" integer, "toyable_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_toys_on_toyable_type_and_toyable_id" ON "toys" ("toyable_type", "toyable_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_toys_on_toyable_type_and_toyable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_toys_on_toyable_type_and_toyable_id' AND type='index'
+
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_toys_on_name_and_toyable_id_and_toyable_type" ON "toys" ("name", "toyable_id", "toyable_type")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170529031131"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_toys_on_name_and_toyable_id_and_toyable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_toys_on_name_and_toyable_id_and_toyable_type' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_toys_on_toyable_type_and_toyable_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_toys_on_toyable_type_and_toyable_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Etha"], ["created_at", "2017-05-29 03:18:56.466455"], ["updated_at", "2017-05-29 03:18:56.466455"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Colten"], ["created_at", "2017-05-29 03:18:56.475764"], ["updated_at", "2017-05-29 03:18:56.475764"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Sterling"], ["created_at", "2017-05-29 03:18:56.478289"], ["updated_at", "2017-05-29 03:18:56.478289"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Hyman"], ["created_at", "2017-05-29 03:18:56.480501"], ["updated_at", "2017-05-29 03:18:56.480501"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Orlo"], ["created_at", "2017-05-29 03:18:56.482489"], ["updated_at", "2017-05-29 03:18:56.482489"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Madisyn"], ["created_at", "2017-05-29 03:18:56.484498"], ["updated_at", "2017-05-29 03:18:56.484498"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Marquise"], ["created_at", "2017-05-29 03:18:56.486648"], ["updated_at", "2017-05-29 03:18:56.486648"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Evangeline"], ["created_at", "2017-05-29 03:18:56.488619"], ["updated_at", "2017-05-29 03:18:56.488619"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Evans"], ["created_at", "2017-05-29 03:18:56.490410"], ["updated_at", "2017-05-29 03:18:56.490410"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Gene"], ["created_at", "2017-05-29 03:18:56.492383"], ["updated_at", "2017-05-29 03:18:56.492383"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Enola"], ["created_at", "2017-05-29 03:18:56.494366"], ["updated_at", "2017-05-29 03:18:56.494366"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Berry"], ["created_at", "2017-05-29 03:18:56.496115"], ["updated_at", "2017-05-29 03:18:56.496115"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Lawson"], ["created_at", "2017-05-29 03:18:56.497989"], ["updated_at", "2017-05-29 03:18:56.497989"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Frank"], ["created_at", "2017-05-29 03:18:56.499928"], ["updated_at", "2017-05-29 03:18:56.499928"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Nyasia"], ["created_at", "2017-05-29 03:18:56.502051"], ["updated_at", "2017-05-29 03:18:56.502051"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Nyah"], ["created_at", "2017-05-29 03:18:56.503928"], ["updated_at", "2017-05-29 03:18:56.503928"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Shawna"], ["created_at", "2017-05-29 03:18:56.505785"], ["updated_at", "2017-05-29 03:18:56.505785"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Madelyn"], ["created_at", "2017-05-29 03:18:56.507588"], ["updated_at", "2017-05-29 03:18:56.507588"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kevin"], ["created_at", "2017-05-29 03:18:56.509410"], ["updated_at", "2017-05-29 03:18:56.509410"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Conor"], ["created_at", "2017-05-29 03:18:56.511328"], ["updated_at", "2017-05-29 03:18:56.511328"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Stacy X Eyes' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Stacy X Eyes"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.529756"], ["updated_at", "2017-05-29 03:18:56.529756"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Giant Shrinking Violet the Hunter' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Giant Shrinking Violet the Hunter"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.533691"], ["updated_at", "2017-05-29 03:18:56.533691"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Dark Bomb Queen Strike' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Dark Bomb Queen Strike"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.536225"], ["updated_at", "2017-05-29 03:18:56.536225"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Curse' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Curse"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.538589"], ["updated_at", "2017-05-29 03:18:56.538589"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'General Ariel' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "General Ariel"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.541309"], ["updated_at", "2017-05-29 03:18:56.541309"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Husk' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Husk"], ["toyable_id", 9], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.543910"], ["updated_at", "2017-05-29 03:18:56.543910"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Carnage' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Carnage"], ["toyable_id", 3], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.546297"], ["updated_at", "2017-05-29 03:18:56.546297"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Medusa' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Medusa"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.548694"], ["updated_at", "2017-05-29 03:18:56.548694"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Thunderbird' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Thunderbird"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.551291"], ["updated_at", "2017-05-29 03:18:56.551291"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Cyborg Match' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Cyborg Match"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.553672"], ["updated_at", "2017-05-29 03:18:56.553672"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Dark Chuck Norris' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Dark Chuck Norris"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.556134"], ["updated_at", "2017-05-29 03:18:56.556134"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Curse Machine' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Curse Machine"], ["toyable_id", 10], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.558897"], ["updated_at", "2017-05-29 03:18:56.558897"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Metamorpho Claw' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Metamorpho Claw"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.561381"], ["updated_at", "2017-05-29 03:18:56.561381"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Wiz Kid' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Wiz Kid"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.563965"], ["updated_at", "2017-05-29 03:18:56.563965"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Aqualad' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Aqualad"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.566428"], ["updated_at", "2017-05-29 03:18:56.566428"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Winter Soldier Wolf' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Winter Soldier Wolf"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.569004"], ["updated_at", "2017-05-29 03:18:56.569004"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Magnificent White Queen of Hearts' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Magnificent White Queen of Hearts"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.571404"], ["updated_at", "2017-05-29 03:18:56.571404"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Dark Monarch Dragon' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Dark Monarch Dragon"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.574028"], ["updated_at", "2017-05-29 03:18:56.574028"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Hulk' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Hulk"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.577452"], ["updated_at", "2017-05-29 03:18:56.577452"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Firestorm Thirteen' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Firestorm Thirteen"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.580037"], ["updated_at", "2017-05-29 03:18:56.580037"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'General Mimic Dragon' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "General Mimic Dragon"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.582676"], ["updated_at", "2017-05-29 03:18:56.582676"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Box' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Box"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.585377"], ["updated_at", "2017-05-29 03:18:56.585377"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Cottonmouth Fist' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Cottonmouth Fist"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.588122"], ["updated_at", "2017-05-29 03:18:56.588122"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'The Mogo XI' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "The Mogo XI"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.590976"], ["updated_at", "2017-05-29 03:18:56.590976"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultron' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultron"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.593406"], ["updated_at", "2017-05-29 03:18:56.593406"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Aztar Woman' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Aztar Woman"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.595732"], ["updated_at", "2017-05-29 03:18:56.595732"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Bantam' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Bantam"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.598304"], ["updated_at", "2017-05-29 03:18:56.598304"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Bane' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Bane"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.601095"], ["updated_at", "2017-05-29 03:18:56.601095"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Impulse' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Impulse"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.603853"], ["updated_at", "2017-05-29 03:18:56.603853"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Dark Gambit Girl' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Dark Gambit Girl"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.607331"], ["updated_at", "2017-05-29 03:18:56.607331"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Doctor Maya Herrera' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Doctor Maya Herrera"], ["toyable_id", 6], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.610678"], ["updated_at", "2017-05-29 03:18:56.610678"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Doctor Goblin Queen' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Doctor Goblin Queen"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.613691"], ["updated_at", "2017-05-29 03:18:56.613691"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mr Archangel' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mr Archangel"], ["toyable_id", 6], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.616712"], ["updated_at", "2017-05-29 03:18:56.616712"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Dark Vision' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Dark Vision"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.619926"], ["updated_at", "2017-05-29 03:18:56.619926"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Penguin' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Penguin"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.622761"], ["updated_at", "2017-05-29 03:18:56.622761"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Storm Knight' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Storm Knight"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.625398"], ["updated_at", "2017-05-29 03:18:56.625398"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Beetle Thirteen' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Beetle Thirteen"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.628110"], ["updated_at", "2017-05-29 03:18:56.628110"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Scorpion Strike' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Scorpion Strike"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.631298"], ["updated_at", "2017-05-29 03:18:56.631298"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Shatterstar Lord' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Shatterstar Lord"], ["toyable_id", 6], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:18:56.634105"], ["updated_at", "2017-05-29 03:18:56.634105"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Iron Fist' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Iron Fist"], ["toyable_id", 9], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:18:56.636611"], ["updated_at", "2017-05-29 03:18:56.636611"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mCorgi Load (0.5ms)[0m  [1mSELECT  "corgis".* FROM "corgis"  ORDER BY "corgis"."id" ASC LIMIT 1[0m
+  [1m[35mCorgi Load (0.2ms)[0m  SELECT  "corgis".* FROM "corgis"  ORDER BY "corgis"."id" ASC LIMIT 1
+  [1m[36mToy Load (0.7ms)[0m  [1mSELECT "toys".* FROM "toys" WHERE "toys"."toyable_id" = ? AND "toys"."toyable_type" = ?[0m  [["toyable_id", 1], ["toyable_type", "Corgi"]]
+  [1m[35mCat Load (0.6ms)[0m  SELECT "cats".* FROM "cats"
+  [1m[36mCat Load (0.2ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1[0m
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1
+  [1m[36mToy Load (0.1ms)[0m  [1mSELECT "toys".* FROM "toys" WHERE "toys"."toyable_id" = ? AND "toys"."toyable_type" = ?[0m  [["toyable_id", 1], ["toyable_type", "Cat"]]
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mToy Load (0.2ms)[0m  [1mSELECT "toys".* FROM "toys" WHERE "toys"."toyable_id" = ? AND "toys"."toyable_type" = ?[0m  [["toyable_id", 2], ["toyable_type", "Cat"]]
+  [1m[36mCat Load (0.5ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mCat Load (0.1ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mCat Load (0.2ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mCat Load (0.3ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mCat Load (0.2ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mCat Load (0.1ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mCat Load (0.2ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mCat Load (1.2ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mCat Load (0.4ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1[0m
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1
+  [1m[36mToy Load (0.6ms)[0m  [1mSELECT  "toys".* FROM "toys"  ORDER BY "toys"."id" ASC LIMIT 1[0m
+  [1m[35mToy Load (1.3ms)[0m  SELECT "toys".* FROM "toys"
+  [1m[36mCat Load (0.2ms)[0m  [1mSELECT "cats".* FROM "cats"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.6ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Agustin"], ["created_at", "2017-05-29 03:46:49.535153"], ["updated_at", "2017-05-29 03:46:49.535153"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Keagan"], ["created_at", "2017-05-29 03:46:49.544209"], ["updated_at", "2017-05-29 03:46:49.544209"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Shanel"], ["created_at", "2017-05-29 03:46:49.546688"], ["updated_at", "2017-05-29 03:46:49.546688"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Hiram"], ["created_at", "2017-05-29 03:46:49.548481"], ["updated_at", "2017-05-29 03:46:49.548481"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ludie"], ["created_at", "2017-05-29 03:46:49.550195"], ["updated_at", "2017-05-29 03:46:49.550195"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Horace"], ["created_at", "2017-05-29 03:46:49.552398"], ["updated_at", "2017-05-29 03:46:49.552398"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Clare"], ["created_at", "2017-05-29 03:46:49.554333"], ["updated_at", "2017-05-29 03:46:49.554333"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Webster"], ["created_at", "2017-05-29 03:46:49.556214"], ["updated_at", "2017-05-29 03:46:49.556214"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Chauncey"], ["created_at", "2017-05-29 03:46:49.558098"], ["updated_at", "2017-05-29 03:46:49.558098"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Daron"], ["created_at", "2017-05-29 03:46:49.560147"], ["updated_at", "2017-05-29 03:46:49.560147"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kellie"], ["created_at", "2017-05-29 03:46:49.561919"], ["updated_at", "2017-05-29 03:46:49.561919"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Hobart"], ["created_at", "2017-05-29 03:46:49.563618"], ["updated_at", "2017-05-29 03:46:49.563618"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Ike"], ["created_at", "2017-05-29 03:46:49.565309"], ["updated_at", "2017-05-29 03:46:49.565309"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ruben"], ["created_at", "2017-05-29 03:46:49.567046"], ["updated_at", "2017-05-29 03:46:49.567046"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Emelia"], ["created_at", "2017-05-29 03:46:49.568890"], ["updated_at", "2017-05-29 03:46:49.568890"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Kristofer"], ["created_at", "2017-05-29 03:46:49.570878"], ["updated_at", "2017-05-29 03:46:49.570878"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kitty"], ["created_at", "2017-05-29 03:46:49.573099"], ["updated_at", "2017-05-29 03:46:49.573099"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Leon"], ["created_at", "2017-05-29 03:46:49.574956"], ["updated_at", "2017-05-29 03:46:49.574956"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Stefanie"], ["created_at", "2017-05-29 03:46:49.576718"], ["updated_at", "2017-05-29 03:46:49.576718"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Winona"], ["created_at", "2017-05-29 03:46:49.578497"], ["updated_at", "2017-05-29 03:46:49.578497"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mr Gog I' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mr Gog I"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.595049"], ["updated_at", "2017-05-29 03:46:49.595049"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Penguin' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Penguin"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.597944"], ["updated_at", "2017-05-29 03:46:49.597944"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Multiple' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Multiple"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.600400"], ["updated_at", "2017-05-29 03:46:49.600400"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Aqua' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Aqua"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.603054"], ["updated_at", "2017-05-29 03:46:49.603054"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Cyborg Wolverine' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Cyborg Wolverine"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.605828"], ["updated_at", "2017-05-29 03:46:49.605828"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Hancock' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Hancock"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.608534"], ["updated_at", "2017-05-29 03:46:49.608534"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Feral' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Feral"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.611250"], ["updated_at", "2017-05-29 03:46:49.611250"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'The Abomination Ivy' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "The Abomination Ivy"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.614117"], ["updated_at", "2017-05-29 03:46:49.614117"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Archangel the Fated' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Archangel the Fated"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.616817"], ["updated_at", "2017-05-29 03:46:49.616817"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Vanisher III' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Vanisher III"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.619701"], ["updated_at", "2017-05-29 03:46:49.619701"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Ariel Boy' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Ariel Boy"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.623065"], ["updated_at", "2017-05-29 03:46:49.623065"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Titan the Fated' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Titan the Fated"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.625782"], ["updated_at", "2017-05-29 03:46:49.625782"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'The Forge' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "The Forge"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.628458"], ["updated_at", "2017-05-29 03:46:49.628458"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Archangel' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Archangel"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.630946"], ["updated_at", "2017-05-29 03:46:49.630946"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Hybrid Fist' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Hybrid Fist"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.633697"], ["updated_at", "2017-05-29 03:46:49.633697"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Songbird' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Songbird"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.636410"], ["updated_at", "2017-05-29 03:46:49.636410"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Giant Atom' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Giant Atom"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.638984"], ["updated_at", "2017-05-29 03:46:49.638984"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Cyborg Ariel Ivy' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Cyborg Ariel Ivy"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.641611"], ["updated_at", "2017-05-29 03:46:49.641611"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mr Omega Red' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mr Omega Red"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.644057"], ["updated_at", "2017-05-29 03:46:49.644057"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Stacy X III' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Stacy X III"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.646599"], ["updated_at", "2017-05-29 03:46:49.646599"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'The Gambit Wolf' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "The Gambit Wolf"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.649099"], ["updated_at", "2017-05-29 03:46:49.649099"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Green Brainiac' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Green Brainiac"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.651886"], ["updated_at", "2017-05-29 03:46:49.651886"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Moon Knight' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Moon Knight"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.654654"], ["updated_at", "2017-05-29 03:46:49.654654"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Cable' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Cable"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.657401"], ["updated_at", "2017-05-29 03:46:49.657401"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Buffy' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Buffy"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.660041"], ["updated_at", "2017-05-29 03:46:49.660041"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Wondra' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Wondra"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.662510"], ["updated_at", "2017-05-29 03:46:49.662510"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'General Polaris' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "General Polaris"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.665117"], ["updated_at", "2017-05-29 03:46:49.665117"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Electro Strike' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Electro Strike"], ["toyable_id", 10], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.667778"], ["updated_at", "2017-05-29 03:46:49.667778"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Giant Ant' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Giant Ant"], ["toyable_id", 1], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.670502"], ["updated_at", "2017-05-29 03:46:49.670502"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Silverclaw Eyes' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Silverclaw Eyes"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.673068"], ["updated_at", "2017-05-29 03:46:49.673068"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Warlock III' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Warlock III"], ["toyable_id", 3], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.675683"], ["updated_at", "2017-05-29 03:46:49.675683"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Scarecrow' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Scarecrow"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.678029"], ["updated_at", "2017-05-29 03:46:49.678029"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Rachel Pirzad Dragon' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Rachel Pirzad Dragon"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.680471"], ["updated_at", "2017-05-29 03:46:49.680471"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Mera' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Mera"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.683167"], ["updated_at", "2017-05-29 03:46:49.683167"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Thundra XI' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Thundra XI"], ["toyable_id", 1], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.685622"], ["updated_at", "2017-05-29 03:46:49.685622"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Doctor Spyke' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Doctor Spyke"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.688184"], ["updated_at", "2017-05-29 03:46:49.688184"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Hercules' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Hercules"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.690691"], ["updated_at", "2017-05-29 03:46:49.690691"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Warbird Boy' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Warbird Boy"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.693746"], ["updated_at", "2017-05-29 03:46:49.693746"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Phoenix Ivy' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Phoenix Ivy"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:46:49.697039"], ["updated_at", "2017-05-29 03:46:49.697039"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Yellow X' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Yellow X"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:46:49.699790"], ["updated_at", "2017-05-29 03:46:49.699790"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "cats" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "corgis" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "toys" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "toyable_id" integer, "toyable_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.9ms)[0m  [1mCREATE UNIQUE INDEX "index_toys_on_name_and_toyable_id_and_toyable_type" ON "toys" ("name", "toyable_id", "toyable_type")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_toys_on_name_and_toyable_id_and_toyable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_toys_on_name_and_toyable_id_and_toyable_type' AND type='index'
+
+  [1m[36m (0.8ms)[0m  [1mCREATE  INDEX "index_toys_on_toyable_type_and_toyable_id" ON "toys" ("toyable_type", "toyable_id")[0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar NOT NULL) 
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.1ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20170529031131')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160602040832')
+  [1m[36m (0.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160602040839')[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "cats" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "corgis" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.9ms)[0m  CREATE TABLE "toys" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "toyable_id" integer, "toyable_type" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "index_toys_on_name_and_toyable_id_and_toyable_type" ON "toys" ("name", "toyable_id", "toyable_type")
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_toys_on_name_and_toyable_id_and_toyable_type' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_toys_on_name_and_toyable_id_and_toyable_type' AND type='index'
+[0m
+  [1m[35m (0.8ms)[0m  CREATE  INDEX "index_toys_on_toyable_type_and_toyable_id" ON "toys" ("toyable_type", "toyable_id")
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.1ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20170529031131')
+  [1m[36m (0.7ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20160602040832')[0m
+  [1m[35m (0.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20160602040839')
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Aylin"], ["created_at", "2017-05-29 03:47:02.812647"], ["updated_at", "2017-05-29 03:47:02.812647"]]
+  [1m[35m (1.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Kelli"], ["created_at", "2017-05-29 03:47:02.820112"], ["updated_at", "2017-05-29 03:47:02.820112"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Emely"], ["created_at", "2017-05-29 03:47:02.822260"], ["updated_at", "2017-05-29 03:47:02.822260"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Felicita"], ["created_at", "2017-05-29 03:47:02.824050"], ["updated_at", "2017-05-29 03:47:02.824050"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Zita"], ["created_at", "2017-05-29 03:47:02.825948"], ["updated_at", "2017-05-29 03:47:02.825948"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Jeremie"], ["created_at", "2017-05-29 03:47:02.828131"], ["updated_at", "2017-05-29 03:47:02.828131"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Noemi"], ["created_at", "2017-05-29 03:47:02.829909"], ["updated_at", "2017-05-29 03:47:02.829909"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ward"], ["created_at", "2017-05-29 03:47:02.831662"], ["updated_at", "2017-05-29 03:47:02.831662"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Mertie"], ["created_at", "2017-05-29 03:47:02.833347"], ["updated_at", "2017-05-29 03:47:02.833347"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Reece"], ["created_at", "2017-05-29 03:47:02.834966"], ["updated_at", "2017-05-29 03:47:02.834966"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Magdalen"], ["created_at", "2017-05-29 03:47:02.836819"], ["updated_at", "2017-05-29 03:47:02.836819"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Bernhard"], ["created_at", "2017-05-29 03:47:02.838562"], ["updated_at", "2017-05-29 03:47:02.838562"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Theresia"], ["created_at", "2017-05-29 03:47:02.840400"], ["updated_at", "2017-05-29 03:47:02.840400"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Arvilla"], ["created_at", "2017-05-29 03:47:02.842007"], ["updated_at", "2017-05-29 03:47:02.842007"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Loy"], ["created_at", "2017-05-29 03:47:02.843600"], ["updated_at", "2017-05-29 03:47:02.843600"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Brennan"], ["created_at", "2017-05-29 03:47:02.845250"], ["updated_at", "2017-05-29 03:47:02.845250"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Fannie"], ["created_at", "2017-05-29 03:47:02.847105"], ["updated_at", "2017-05-29 03:47:02.847105"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Mason"], ["created_at", "2017-05-29 03:47:02.848866"], ["updated_at", "2017-05-29 03:47:02.848866"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Camila"], ["created_at", "2017-05-29 03:47:02.850541"], ["updated_at", "2017-05-29 03:47:02.850541"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Kayley"], ["created_at", "2017-05-29 03:47:02.852186"], ["updated_at", "2017-05-29 03:47:02.852186"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Ariel' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Ariel"], ["toyable_id", 4], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.864651"], ["updated_at", "2017-05-29 03:47:02.864651"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Magnificent Match III' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Magnificent Match III"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.867975"], ["updated_at", "2017-05-29 03:47:02.867975"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Fixer Woman' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Fixer Woman"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.870754"], ["updated_at", "2017-05-29 03:47:02.870754"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Green Azrael X' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Green Azrael X"], ["toyable_id", 4], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.873364"], ["updated_at", "2017-05-29 03:47:02.873364"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mockingbird' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mockingbird"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.875924"], ["updated_at", "2017-05-29 03:47:02.875924"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Violator' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Violator"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.878994"], ["updated_at", "2017-05-29 03:47:02.878994"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Penance' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Penance"], ["toyable_id", 6], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.881628"], ["updated_at", "2017-05-29 03:47:02.881628"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Banshee' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Banshee"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.884272"], ["updated_at", "2017-05-29 03:47:02.884272"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Bantam Brain' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Bantam Brain"], ["toyable_id", 4], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.887172"], ["updated_at", "2017-05-29 03:47:02.887172"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Triplicate' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Triplicate"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.889984"], ["updated_at", "2017-05-29 03:47:02.889984"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Isis IX' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Isis IX"], ["toyable_id", 1], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.892740"], ["updated_at", "2017-05-29 03:47:02.892740"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'She-Thing' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "She-Thing"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.895799"], ["updated_at", "2017-05-29 03:47:02.895799"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent T' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent T"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.898416"], ["updated_at", "2017-05-29 03:47:02.898416"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Molten Man' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Molten Man"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.901316"], ["updated_at", "2017-05-29 03:47:02.901316"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Winter Soldier' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Winter Soldier"], ["toyable_id", 10], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.904280"], ["updated_at", "2017-05-29 03:47:02.904280"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Box Lord' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Box Lord"], ["toyable_id", 9], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.907092"], ["updated_at", "2017-05-29 03:47:02.907092"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Thanos Knight' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Thanos Knight"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.909656"], ["updated_at", "2017-05-29 03:47:02.909656"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Heat Wave of Hearts' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Heat Wave of Hearts"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.912866"], ["updated_at", "2017-05-29 03:47:02.912866"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Tinkerer X' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Tinkerer X"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.915615"], ["updated_at", "2017-05-29 03:47:02.915615"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Siren Skull' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Siren Skull"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.918383"], ["updated_at", "2017-05-29 03:47:02.918383"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Polaris Boy' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Polaris Boy"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.921166"], ["updated_at", "2017-05-29 03:47:02.921166"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Goku Lord' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Goku Lord"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.924104"], ["updated_at", "2017-05-29 03:47:02.924104"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Giant Hell Lord' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Giant Hell Lord"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.928714"], ["updated_at", "2017-05-29 03:47:02.928714"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Frenzy' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Frenzy"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.931247"], ["updated_at", "2017-05-29 03:47:02.931247"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Fixer Machine' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Fixer Machine"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.934449"], ["updated_at", "2017-05-29 03:47:02.934449"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Crystal Strike' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Crystal Strike"], ["toyable_id", 10], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.937116"], ["updated_at", "2017-05-29 03:47:02.937116"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Krypto' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Krypto"], ["toyable_id", 4], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.939607"], ["updated_at", "2017-05-29 03:47:02.939607"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Doctor Evilhawk Ivy' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Doctor Evilhawk Ivy"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.941935"], ["updated_at", "2017-05-29 03:47:02.941935"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Colossus' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Colossus"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.944535"], ["updated_at", "2017-05-29 03:47:02.944535"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Firestar' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Firestar"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.947140"], ["updated_at", "2017-05-29 03:47:02.947140"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mimic' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mimic"], ["toyable_id", 6], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.949745"], ["updated_at", "2017-05-29 03:47:02.949745"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Omniscient Skull' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Omniscient Skull"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.952451"], ["updated_at", "2017-05-29 03:47:02.952451"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Watcher' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Watcher"], ["toyable_id", 4], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.955236"], ["updated_at", "2017-05-29 03:47:02.955236"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Shatterstar X' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Shatterstar X"], ["toyable_id", 1], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.957630"], ["updated_at", "2017-05-29 03:47:02.957630"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Two-Face' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Two-Face"], ["toyable_id", 4], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.960258"], ["updated_at", "2017-05-29 03:47:02.960258"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Moloch' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Moloch"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.963101"], ["updated_at", "2017-05-29 03:47:02.963101"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Cottonmouth Dragon' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Cottonmouth Dragon"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.967808"], ["updated_at", "2017-05-29 03:47:02.967808"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Cat X' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Cat X"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.970689"], ["updated_at", "2017-05-29 03:47:02.970689"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Maverick XI' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Maverick XI"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:02.973020"], ["updated_at", "2017-05-29 03:47:02.973020"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Kang the Hunter' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Kang the Hunter"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:02.975607"], ["updated_at", "2017-05-29 03:47:02.975607"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Donna"], ["created_at", "2017-05-29 03:47:14.059430"], ["updated_at", "2017-05-29 03:47:14.059430"]]
+  [1m[35m (1.4ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Haylee"], ["created_at", "2017-05-29 03:47:14.066822"], ["updated_at", "2017-05-29 03:47:14.066822"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Anjali"], ["created_at", "2017-05-29 03:47:14.068774"], ["updated_at", "2017-05-29 03:47:14.068774"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Karlie"], ["created_at", "2017-05-29 03:47:14.070483"], ["updated_at", "2017-05-29 03:47:14.070483"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jimmy"], ["created_at", "2017-05-29 03:47:14.072443"], ["updated_at", "2017-05-29 03:47:14.072443"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Colin"], ["created_at", "2017-05-29 03:47:14.074321"], ["updated_at", "2017-05-29 03:47:14.074321"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Kyla"], ["created_at", "2017-05-29 03:47:14.076119"], ["updated_at", "2017-05-29 03:47:14.076119"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Krista"], ["created_at", "2017-05-29 03:47:14.077840"], ["updated_at", "2017-05-29 03:47:14.077840"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Janiya"], ["created_at", "2017-05-29 03:47:14.079785"], ["updated_at", "2017-05-29 03:47:14.079785"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Crystal"], ["created_at", "2017-05-29 03:47:14.081841"], ["updated_at", "2017-05-29 03:47:14.081841"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Aurore"], ["created_at", "2017-05-29 03:47:14.083909"], ["updated_at", "2017-05-29 03:47:14.083909"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Hortense"], ["created_at", "2017-05-29 03:47:14.085764"], ["updated_at", "2017-05-29 03:47:14.085764"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Theodore"], ["created_at", "2017-05-29 03:47:14.087461"], ["updated_at", "2017-05-29 03:47:14.087461"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Minnie"], ["created_at", "2017-05-29 03:47:14.089135"], ["updated_at", "2017-05-29 03:47:14.089135"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elissa"], ["created_at", "2017-05-29 03:47:14.090736"], ["updated_at", "2017-05-29 03:47:14.090736"]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Aaron"], ["created_at", "2017-05-29 03:47:14.092572"], ["updated_at", "2017-05-29 03:47:14.092572"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Rachael"], ["created_at", "2017-05-29 03:47:14.094427"], ["updated_at", "2017-05-29 03:47:14.094427"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Kenton"], ["created_at", "2017-05-29 03:47:14.096525"], ["updated_at", "2017-05-29 03:47:14.096525"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "corgis" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Elyssa"], ["created_at", "2017-05-29 03:47:14.098320"], ["updated_at", "2017-05-29 03:47:14.098320"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "cats" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Ethelyn"], ["created_at", "2017-05-29 03:47:14.099973"], ["updated_at", "2017-05-29 03:47:14.099973"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Frenzy Claw' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Frenzy Claw"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.113495"], ["updated_at", "2017-05-29 03:47:14.113495"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Moonstone' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Moonstone"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.116525"], ["updated_at", "2017-05-29 03:47:14.116525"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Vulture' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Vulture"], ["toyable_id", 7], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.119208"], ["updated_at", "2017-05-29 03:47:14.119208"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Tempest of Hearts' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Tempest of Hearts"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.121876"], ["updated_at", "2017-05-29 03:47:14.121876"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Winter Soldier' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Winter Soldier"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.124478"], ["updated_at", "2017-05-29 03:47:14.124478"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Zatanna' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Zatanna"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.127273"], ["updated_at", "2017-05-29 03:47:14.127273"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Beyonder' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Beyonder"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.129644"], ["updated_at", "2017-05-29 03:47:14.129644"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Bird Dragon' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Bird Dragon"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.132198"], ["updated_at", "2017-05-29 03:47:14.132198"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Sobek' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Sobek"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.134824"], ["updated_at", "2017-05-29 03:47:14.134824"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Giant Curse Knight' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Giant Curse Knight"], ["toyable_id", 2], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.137635"], ["updated_at", "2017-05-29 03:47:14.137635"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Pyro Skull' AND "toys"."toyable_id" = 6) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Pyro Skull"], ["toyable_id", 6], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.140868"], ["updated_at", "2017-05-29 03:47:14.140868"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Titan Spirit' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Titan Spirit"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.143662"], ["updated_at", "2017-05-29 03:47:14.143662"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mr Firebird II' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mr Firebird II"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.146373"], ["updated_at", "2017-05-29 03:47:14.146373"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Illustrious Ariel Spirit' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Illustrious Ariel Spirit"], ["toyable_id", 8], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.149083"], ["updated_at", "2017-05-29 03:47:14.149083"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Cable' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Cable"], ["toyable_id", 11], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.151837"], ["updated_at", "2017-05-29 03:47:14.151837"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Cyborg Renata Soliz' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Cyborg Renata Soliz"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.154634"], ["updated_at", "2017-05-29 03:47:14.154634"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Mimic XI' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Mimic XI"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.157464"], ["updated_at", "2017-05-29 03:47:14.157464"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Cypher Girl' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Cypher Girl"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.160346"], ["updated_at", "2017-05-29 03:47:14.160346"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Zatanna Lord' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Zatanna Lord"], ["toyable_id", 3], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.163045"], ["updated_at", "2017-05-29 03:47:14.163045"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Deathlok Skull' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Deathlok Skull"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.165792"], ["updated_at", "2017-05-29 03:47:14.165792"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Aqualad' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Aqualad"], ["toyable_id", 9], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.168168"], ["updated_at", "2017-05-29 03:47:14.168168"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mephisto Eyes' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mephisto Eyes"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.170600"], ["updated_at", "2017-05-29 03:47:14.170600"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Magnificent Bizarro' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Magnificent Bizarro"], ["toyable_id", 5], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.173165"], ["updated_at", "2017-05-29 03:47:14.173165"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Agent Beast' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Agent Beast"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.175831"], ["updated_at", "2017-05-29 03:47:14.175831"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Kang' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Kang"], ["toyable_id", 3], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.178333"], ["updated_at", "2017-05-29 03:47:14.178333"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Wasp' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Wasp"], ["toyable_id", 3], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.180983"], ["updated_at", "2017-05-29 03:47:14.180983"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Magnificent Bumblebee' AND "toys"."toyable_id" = 7) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Magnificent Bumblebee"], ["toyable_id", 7], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.183511"], ["updated_at", "2017-05-29 03:47:14.183511"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Giant Vanisher' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Giant Vanisher"], ["toyable_id", 1], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.186039"], ["updated_at", "2017-05-29 03:47:14.186039"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Ultra Warbird Woman' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Ultra Warbird Woman"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.188672"], ["updated_at", "2017-05-29 03:47:14.188672"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Space Ghost' AND "toys"."toyable_id" = 4) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Space Ghost"], ["toyable_id", 4], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.191369"], ["updated_at", "2017-05-29 03:47:14.191369"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'The Scorpion' AND "toys"."toyable_id" = 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "The Scorpion"], ["toyable_id", 2], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.194642"], ["updated_at", "2017-05-29 03:47:14.194642"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Supah Rachel Pirzad Ivy' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Supah Rachel Pirzad Ivy"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.197225"], ["updated_at", "2017-05-29 03:47:14.197225"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Captain Cerebra' AND "toys"."toyable_id" = 5) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Captain Cerebra"], ["toyable_id", 5], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.199881"], ["updated_at", "2017-05-29 03:47:14.199881"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Domino' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Domino"], ["toyable_id", 9], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.202930"], ["updated_at", "2017-05-29 03:47:14.202930"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Red Bolt Woman' AND "toys"."toyable_id" = 8) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Red Bolt Woman"], ["toyable_id", 8], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.205759"], ["updated_at", "2017-05-29 03:47:14.205759"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Bizarro' AND "toys"."toyable_id" = 11) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Bizarro"], ["toyable_id", 11], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.208434"], ["updated_at", "2017-05-29 03:47:14.208434"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Sage' AND "toys"."toyable_id" = 9) LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Sage"], ["toyable_id", 9], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.211073"], ["updated_at", "2017-05-29 03:47:14.211073"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Energy' AND "toys"."toyable_id" = 10) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Energy"], ["toyable_id", 10], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.214175"], ["updated_at", "2017-05-29 03:47:14.214175"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Mr Demogoblin' AND "toys"."toyable_id" = 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Mr Demogoblin"], ["toyable_id", 3], ["toyable_type", "Corgi"], ["created_at", "2017-05-29 03:47:14.217067"], ["updated_at", "2017-05-29 03:47:14.217067"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mToy Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "toys" WHERE ("toys"."name" = 'Silverclaw' AND "toys"."toyable_id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "toys" ("name", "toyable_id", "toyable_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Silverclaw"], ["toyable_id", 1], ["toyable_type", "Cat"], ["created_at", "2017-05-29 03:47:14.219708"], ["updated_at", "2017-05-29 03:47:14.219708"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[36mCat Load (0.1ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1[0m
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1 OFFSET 1
+  [1m[36mCorgi Load (0.1ms)[0m  [1mSELECT  "corgis".* FROM "corgis"  ORDER BY "corgis"."id" ASC LIMIT 1[0m
+  [1m[35mCorgi Load (0.2ms)[0m  SELECT  "corgis".* FROM "corgis"  ORDER BY "corgis"."id" ASC LIMIT 1
+  [1m[36mCat Load (1.5ms)[0m  [1mSELECT "cats".* FROM "cats"[0m
+  [1m[35mCat Load (0.3ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" DESC LIMIT 1
+  [1m[36mCat Load (0.3ms)[0m  [1mSELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" DESC LIMIT 1[0m
+  [1m[35mCat Load (1.0ms)[0m  SELECT "cats".* FROM "cats"
+  [1m[36mCat Load (2.2ms)[0m  [1mSELECT "cats".* FROM "cats"[0m
+  [1m[35mCat Load (0.2ms)[0m  SELECT  "cats".* FROM "cats"  ORDER BY "cats"."id" ASC LIMIT 1
