@@ -1,5 +1,5 @@
 body {
-  font-family: 'Arial, sans-serif';
+  font-family: Arial, sans-serif;
   background-color: antiquewhite;
 }
 
@@ -19,6 +19,25 @@ header > img {
   width: 100px;
 }
 
+figure > img {
+  width: 500px;
+  height: 500px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
 ol {
   list-style: upper-roman inside;
+}
+
+.user_review {
+  padding: 20px;
+  font-family: Monospace;
+  font-size: 12px;
+  background-color: aliceblue;
+  border: 1px dashed darkgrey;
+  font-weight: bold;
 }
