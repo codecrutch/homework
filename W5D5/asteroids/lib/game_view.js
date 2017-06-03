@@ -3,6 +3,7 @@ const Game = require('./game.js');
 function GameView(ctx){
   this.ctx = ctx;
   this.game = new Game();
+  this.game.addAsteroids();
   // this.ship =
 }
 

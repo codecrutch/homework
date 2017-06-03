@@ -75,7 +75,7 @@ const Asteroid = __webpack_require__(5);
 function Game(){
   this.DIM_X = 1000;
   this.DIM_Y = 1000;
-  this.NUM_ASTEROIDS = 5;
+  this.NUM_ASTEROIDS = 50;
   this.asteroids = [];
 }
 
@@ -112,20 +112,23 @@ module.exports = Game;
 /***/ (function(module, exports) {
 
 function MovingObject(pos, vel, rad, color){
-  this.pos  = pos;
+  this.pos = pos;
   this.vel = vel;
   this.radius = rad;
   this.color = color;
 }
 
 MovingObject.prototype.draw = function (ctx) {
-  debugger
-  ctx.radius = Math.PI * 2 * this.radius;
-  ctx.moveTo(this.pos[0], this.pos[1]);
   ctx.fillStyle = this.color;
+
+  ctx.beginPath();
+  ctx.arc(
+    this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
+  );
+  ctx.fill();
 };
 
-MovingObject.prototype.move  = function (){
+MovingObject.prototype.move = function (){
   this.pos[0] += this.vel[0];
   this.pos[1] += this.vel[1];
 };
@@ -166,6 +169,7 @@ const Game = __webpack_require__(0);
 function GameView(ctx){
   this.ctx = ctx;
   this.game = new Game();
+  this.game.addAsteroids();
   // this.ship =
 }
 
@@ -185,17 +189,13 @@ module.exports = GameView;
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// import Util from "utils.js";
-// import MovingObject from "moving_object.js";
-// import Game from "game.js";
-// import GameView from "game_view.js";
-const Util = __webpack_require__(2);
-const MovingObject = __webpack_require__(1);
-const Game = __webpack_require__(0);
+// const Util = require("./lib/utils.js");
+// const MovingObject = require("./lib/moving_object.js");
+// const Game = require("./lib/game.js");
 const GameView = __webpack_require__(3);
 
 document.addEventListener("DOMContentLoaded", function(){
-  debugger
+  console.log("We are running, Sassy Gecko");
   var ctx = document.getElementById('game-canvas').getContext('2d');
   var view = new GameView(ctx);
   view.start();
@@ -210,16 +210,17 @@ const MovingObject = __webpack_require__(1);
 const Util = __webpack_require__(2);
 
 function Asteroid(pos){
-  this.COLOR = "#0f0";
-  this.RADIUS = 4;
-  MovingObject.call(pos, Util.randomeVec(Math.floor(Math.random() * 11)), this.RADIUS, this.COLOR);
-
-  // Return a randomly oriented vector with the given length.
-
+  this.color = "#0f0";
+  this.radius = 4;
+  this.pos = pos;
+  this.vel = Util.randomVec(Math.floor(Math.random() * 11));
+  MovingObject.call(pos, this.vel, this.radius, this.color);
 }
+  Util.inherits(Asteroid, MovingObject);
 
 
-Util.inherits(Asteroid, MovingObject);
+
+module.exports = Asteroid;
 
 
 /***/ })
