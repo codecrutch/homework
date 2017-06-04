@@ -6,6 +6,7 @@
     <meta name="description" content="Cake recipe">
     <meta name="keywords" content="cake, dessert, drop cake, bakery, pie">
     <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="grid.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script src="form.js" type="text/javascript"></script>
 
     <script>
@@ -20,7 +21,7 @@
   </head>
 
   <body>
-    <header>
+    <header class='clearfix'>
       <img
       src="http://www.missmaggiemo.com/assets/a_A_logo-e3ba72aa1a4647730242c7a5cc64aa9a.png"
       alt="AppAcademy Logo" width="50"/>
@@ -33,42 +34,68 @@
       </nav>
     </header>
 
-    <aside>
-      <h2 id='ingredients'>Ingredients</h2>
-      <ul class="ingredients-list">
-        <li>Flour</li>
-        <li>Eggs</li>
-        <li>Vanilla bean</li>
-        <li>Butter</li>
-        <li>Sugar</li>
-      </ul>
-    </aside>
+    <div class='col col-1-3'>
+      <aside>
+        <h2 id='ingredients'>Ingredients</h2>
+        <ul class="ingredients-list">
+          <li>1 tablespoon baking powder</li>
+          <li>2 sticks unsalted butter, at room temperature, plus
+            more for the pans</li>
+          <li>1/2 teaspoon salt</li>
+          <li>1 1/4 cups sugar</li>
+          <li>4 large eggs, at room temperature</li>
+          <li>1 tablespoon vanilla extract</li>
+          <li>1 1/4 cups whole milk (or 3/4 cup heavy cream mixed
+            with 1/2 cup water)</li>
+          <li>3 cups all-purpose flour, plus more for the pans</li>
+        </ul>
+      </aside>
+    </div>
 
-    <section id='main'>
-      <h2>Vanilla Drop Cake</h2>
+    <div class='col col-2-3'>
+      <section id='main'>
+        <h2>Chocoloate Drop Cake</h2>
 
-      <figure>
-        <img
-        src="https://s-media-cache-ak0.pinimg.com/236x/46/93/a6/4693a681133a84fd294af5474a96fbb2.jpg"
-        alt="Cake"/>
-        <figcaption><a href="https://en.wikipedia.org/wiki/Cake"
-            target="_blank">The cake is a lie.</a></figcaption>
-      </figure>
+        <figure>
+          <img
+          src="http://cdn-image.foodandwine.com/sites/default/files/201202-xl-moms-chocolate-cake.jpg"
+          alt="Cake"/>
+          <figcaption><a href="https://en.wikipedia.org/wiki/Cake"
+              target="_blank">The cake is a lie.</a></figcaption>
+        </figure>
 
-      <h2 id='description'>Description</h2>
-      <p>A drop cake is mixed and dropped on a baking sheet much like cookies
-        would be made.</p>
+        <h2 id='description'>Description</h2>
+        <p>A drop cake is mixed and dropped on a baking sheet much like cookies
+          would be made.</p>
 
-      <h2 id='directions'>Directions</h2>
-      <ol>
-        <li>Preheat oven to 300 degrees</li>
-        <li>Add dry ingredients</li>
-        <li>Add wet ingredients and mix until smooth</li>
-        <li>Bake for 1 hour</li>
-        <li>Cool cakes on cooling rack for 2 hours</li>
-        <li>Frost, chill, and enjoy!</li>
-      </ol>
-    </section>
+        <h2 id='directions'>Directions</h2>
+        <ol>
+          <li>Preheat oven to 350 degrees</li>
+          <li>Butter two 9-inch-round cake pans and line the bottoms
+            with parchment paper</li>
+          <li>Butter the parchment and dust the pans with flour, tapping out the
+            excess</li>
+          <li>Whisk 3 cups flour, the baking powder and salt in a bowl until
+            combined</li>
+          <li>Beat 2 sticks butter and the sugar in a large bowl with a mixer on
+            medium-high speed until light and fluffy, about 3 minutes</li>
+          <li>Reduce the mixer speed to medium; beat in the eggs, one at a time,
+            scraping down the bowl as needed</li>
+          <li>Beat in the vanilla</li>
+          <li> Beat in the flour mixture in 3 batches, alternating with the milk,
+            beginning and ending with flour, until just smooth</li>
+          <li>Divide the batter between the prepared pans</li>
+          <li> Bake until the cakes are lightly golden on top and a toothpick
+            inserted into the middle comes out clean, 30 to 35 minutes</li>
+          <li>Transfer to racks and let cool 10 minutes, then run a knife around
+            the edge of the pans and turn the cakes out onto the racks to cool
+            completely</li>
+          <li> Remove the parchment. Trim the tops of the cakes with a long
+            serrated knife to make them level, if desired</li>
+          <li>Frost, chill, and enjoy!</li>
+        </ol>
+      </section>
+    </div>
 
     <section id='reviews'>
       <form id='review-form' action="/reviews" method="post" accept-charset="utf-8">
@@ -100,7 +127,7 @@
     </section>
 
     <footer>
-      <p>This recipe is made up by Sean Snyder.</p>
+      <p>Recipe courtesy of Food Network Magazine</p>
     </footer>
 
     <!-- Original recipe by an unknown author -->
