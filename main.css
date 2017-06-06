@@ -129,3 +129,48 @@ label {
   display: block;
   padding: 10px;
 }
+
+.hamburger-dropdown {
+  display: none;
+}
+
+  #expertise {
+    width: 375px;
+  }
+
+@media (max-width: 1250px ) {
+  nav ul {
+    display: none;
+  }
+
+  .hamburger-dropdown {
+    display: block;
+  }
+  .hamburger-dropdown > li {
+    background: url(hamburger.png);
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    cursor: pointer;
+  }
+  .hamburger-dropdown ul {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    flex-direction: column;
+    cursor: pointer;
+    box-shadow: black 5px 5px 10px;
+  }
+
+  .hamburger-dropdown:hover ul {
+    display: flex;
+    background: #A2BEF1;
+  }
+
+  .hamburger-dropdown ul li:hover a {
+    text-decoration: underline;
+  } 
+
+}
