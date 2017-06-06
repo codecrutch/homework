@@ -1,0 +1,21 @@
+.sections ul li{
+  float: left;
+  margin-top: 10px;
+  padding: 0px 10px 0px 10px;
+  align-items: center;
+  font-size: 15px;
+}
+.sections ul li a {
+  background: transparent;
+}
+
+.sections ul li:hover {
+  background-color: $light-gray;
+  border-radius: 10px;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
