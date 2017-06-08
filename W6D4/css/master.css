@@ -1,0 +1,9 @@
+.fwarriors {
+  background: antiquewhite;
+  color: blue;
+  height: 100px;
+  border: 1px solid purple;
+  border-radius: 20px;
+  list-style: none;
+  margin: 20px;
+}
