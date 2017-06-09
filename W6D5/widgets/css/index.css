@@ -1,0 +1,54 @@
+body {
+  width: 100%;
+}
+
+#main {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.widget {
+  font-family: 'Lobster Two', cursive;
+  max-width: 500px;
+  width: 100%;
+  margin: 15px auto;
+  padding: 1.5%;
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+.widget h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+.widget p {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5em;
+}
+
+.clock {
+  background-color: salmon;
+}
+
+.weather {
+  background-color: #3D9970;
+}
+
+.autocomp {
+  list-style: none;
+  background: #85144b;
+  color: antiquewhite;
+  font-size: 2.2em;
+  cursor: pointer;
+}
+
+.tab {
+  background: magenta;
+}
+
+.tab-headers {
+  display: flex;
+  justify-content: space-around;
+}
