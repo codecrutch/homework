@@ -1,5 +1,6 @@
 import React from 'react';
 import Currency from './currency';
+import Inflated from './inflated';
 import selectCurrency from '../actions';
 
 class Widget extends React.Component {
@@ -54,6 +55,14 @@ class Widget extends React.Component {
       )
     );
 
+    const inflatedCurrency = currencyNames.filter( (currency) => (
+      rates[currency] < 1
+    ));
+    const inflated = inflatedCurrency.map( (currency) => (
+      <Inflated name={currency} key={currency} />
+    ));
+
+
     return (
       <div>
         <h1>Currency Exchange Rates</h1>
@@ -63,6 +72,11 @@ class Widget extends React.Component {
           Get Rates:
           {currencyOptions}
         </div>
+
+        <div className="inflated-list">
+          {inflated}
+        </div>
+
         <div className="rates-list">
           {currencyRates}
         </div>

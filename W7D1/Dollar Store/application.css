@@ -18,3 +18,27 @@
 .rates-list {
   padding-top: 10px;
 }
+
+.inflated-list:empty {
+  display: none;
+}
+
+.inflated-list {
+  display: flex;
+  margin: 25px;
+  min-height: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: lightgrey;
+  border-radius: 10em;
+}
+
+.inflated {
+  color: navy;
+  margin: 15px;
+  font-size: 8px;
+}
+
+.inflated:visited {
+  color: purple;
+}
